@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import type { Expense, ExpenseCategory } from '../types/expense';
 
 type ExpenseFormProps = {
-    onAdd: (title: string, amount: number) => void;
+    onAdd: (title: string, amount: number, category: ExpenseCategory) => void;
+    editingExpense: Expense | null;
 };
 
-export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
+export default function ExpenseForm({ onAdd, editingExpense }: ExpenseFormProps) {
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
+    const [category, setCategory] = useState<ExpenseCategory>("Shopping");
+    useEffect(() => {
+        if (editingExpense) {
+            setTitle(editingExpense.title);
+            setAmount(String(editingExpense.amount));
+            setCategory(editingExpense.category);
+        }
+    }, [editingExpense]);
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
         console.log('submit');
         console.log(title, amount);
 
-        onAdd(title, Number(amount));
+        onAdd(title, Number(amount), category);
 
         setTitle("");
         setAmount("");
@@ -21,7 +31,7 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
 
 
     return (
-        <form action="GET"
+        <form
             onSubmit={handleSubmit}
         >
 
@@ -29,7 +39,12 @@ export default function ExpenseForm({ onAdd }: ExpenseFormProps) {
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
 
             <p>Amount</p>
-            <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
+            <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+            <br />
+            <select name="cateory" id="category" value={category} onChange={(e) => setCategory(e.target.value as ExpenseCategory)}>
+                <option value="Shopping">Shopping</option>
+                <option value="Food">Food</option>
+            </select>
             <br />
             <button type='submit'>Submit</button>
         </form>
