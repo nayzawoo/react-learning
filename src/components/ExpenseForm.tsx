@@ -3,10 +3,17 @@ import type { Expense, ExpenseCategory } from '../types/expense';
 
 type ExpenseFormProps = {
     onAdd: (title: string, amount: number, category: ExpenseCategory) => void;
+    onUpdate: (expense: Expense) => void;
+    onCancleEdit: () => void;
     editingExpense: Expense | null;
 };
 
-export default function ExpenseForm({ onAdd, editingExpense }: ExpenseFormProps) {
+export default function ExpenseForm({
+    onAdd,
+    onUpdate,
+    onCancleEdit,
+    editingExpense
+}: ExpenseFormProps) {
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
     const [category, setCategory] = useState<ExpenseCategory>("Shopping");
@@ -15,6 +22,10 @@ export default function ExpenseForm({ onAdd, editingExpense }: ExpenseFormProps)
             setTitle(editingExpense.title);
             setAmount(String(editingExpense.amount));
             setCategory(editingExpense.category);
+        } else {
+            setTitle("");
+            setAmount("");
+            setCategory("Shopping");
         }
     }, [editingExpense]);
 
@@ -23,12 +34,21 @@ export default function ExpenseForm({ onAdd, editingExpense }: ExpenseFormProps)
         console.log('submit');
         console.log(title, amount);
 
+        if (editingExpense) {
+            onUpdate({
+                ...editingExpense,
+                title,
+                amount: Number(amount),
+                category
+            });
+            return;
+        }
+
         onAdd(title, Number(amount), category);
 
         setTitle("");
         setAmount("");
-      }
-
+    }
 
     return (
         <form
@@ -46,7 +66,18 @@ export default function ExpenseForm({ onAdd, editingExpense }: ExpenseFormProps)
                 <option value="Food">Food</option>
             </select>
             <br />
-            <button type='submit'>Submit</button>
+            {editingExpense && (
+
+                <button
+                    type='button'
+                    onClick={onCancleEdit}
+                >
+                    Cancle
+                </button>
+            )}
+            <button type='submit'>
+                {editingExpense ? 'Update Expense' : 'Add Expense'}
+            </button>
         </form>
     )
 }
