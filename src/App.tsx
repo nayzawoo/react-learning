@@ -60,7 +60,7 @@ function App() {
       return;
     }
 
-    if (amount < 0) {
+    if (amount <= 0) {
       return;
     }
 
@@ -91,7 +91,7 @@ function App() {
       <ExpenseList expenses={filteredExpenses} onDelete={handleDelete} onEdit={handleEdit} />
       <h3>Total : {total}</h3>
       <h2>Add Expense</h2>
-      <ExpenseForm onAdd={handleAdd} onUpdate={handleUpdate} onCancleEdit={handleCancelEdit} editingExpense={editingExpense}/>
+      <ExpenseForm onAdd={handleAdd} onUpdate={handleUpdate} onCancelEdit={handleCancelEdit} editingExpense={editingExpense}/>
 
       <hr />
       Editing { editingExpense && (editingExpense.title)}

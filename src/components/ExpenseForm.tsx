@@ -4,14 +4,14 @@ import type { Expense, ExpenseCategory } from '../types/expense';
 type ExpenseFormProps = {
     onAdd: (title: string, amount: number, category: ExpenseCategory) => void;
     onUpdate: (expense: Expense) => void;
-    onCancleEdit: () => void;
+    onCancelEdit: () => void;
     editingExpense: Expense | null;
 };
 
 export default function ExpenseForm({
     onAdd,
     onUpdate,
-    onCancleEdit,
+    onCancelEdit,
     editingExpense
 }: ExpenseFormProps) {
     const [title, setTitle] = useState("");
@@ -34,17 +34,28 @@ export default function ExpenseForm({
         console.log('submit');
         console.log(title, amount);
 
+        const trimedTitle = title.trim();
+        const numericAmount = Number(amount);
+
+        if (trimedTitle === '') {
+            return;
+        }
+
+        if (numericAmount <= 0) {
+            return;
+        }
+
         if (editingExpense) {
             onUpdate({
                 ...editingExpense,
-                title,
-                amount: Number(amount),
+                title: trimedTitle,
+                amount: numericAmount,
                 category
             });
             return;
         }
 
-        onAdd(title, Number(amount), category);
+        onAdd(trimedTitle, numericAmount, category);
 
         setTitle("");
         setAmount("");
@@ -70,7 +81,7 @@ export default function ExpenseForm({
 
                 <button
                     type='button'
-                    onClick={onCancleEdit}
+                    onClick={onCancelEdit}
                 >
                     Cancle
                 </button>
