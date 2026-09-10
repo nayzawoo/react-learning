@@ -12,15 +12,18 @@ type CategorySelectProps =
         includeAll?: false;
     }
 
-export default function CategorySelect({
-    value,
-    onChange,
-    includeAll,
-}: CategorySelectProps
+export default function CategorySelect(props: CategorySelectProps
 ) {
     return (
-        <select name="cateory" id="category" value={value} onChange={(e) => onChange(e.target.value as ExpenseCategory)}>
-            {includeAll && (
+        <select name="cateory" id="category" value={props.value} onChange={(e) => {
+            if (props.includeAll) {
+                props.onChange(e.target.value as ExpenseCategory | "All");
+                return;
+            }
+
+            props.onChange(e.target.value as ExpenseCategory);
+        }}>
+            {props.includeAll && (
                 <option value="All">All</option>
             )}
             {EXPENSE_CATEGORIES.map((category) => (
