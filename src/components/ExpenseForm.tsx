@@ -19,7 +19,7 @@ export default function ExpenseForm({
     const [error, setError] = useState("");
     const [category, setCategory] = useState<ExpenseCategory>("Shopping");
     useEffect(() => {
-        setError("");   
+        setError("");
         if (editingExpense) {
             setTitle(editingExpense.title);
             setAmount(String(editingExpense.amount));
