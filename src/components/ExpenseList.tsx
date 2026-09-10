@@ -8,7 +8,7 @@ type ExpenseExpenseListProps = {
 };
 
 export default function ExpenseList({ expenses, onDelete, onEdit}: ExpenseExpenseListProps) {
-    if (expenses.length == 0) {
+    if (expenses.length === 0) {
         return <p>No Expense Found.</p>
     }
 

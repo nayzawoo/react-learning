@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { EXPENSE_CATEGORIES, type Expense, type ExpenseCategory } from './types/expense';
 import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
+import CategorySelect from './components/CategorySelect';
 
 function App() {
   const [expenses, setExpenses] = useState<Expense[]>(() => {
@@ -33,7 +34,7 @@ function App() {
   }
 
   const handleDelete = (id: number) => {
-    setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id != id))
+    setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== id))
   }
 
   const handleUpdate = (updatedExpense: Expense) => {
@@ -81,12 +82,7 @@ function App() {
     <>
       <h2>Expenses({filteredExpenses.length})</h2>
       <h4>Filtered By Category</h4>
-      <select name="category" value={filteredCategory} onChange={(e) => setFilteredCategory(e.target.value as ExpenseCategory | "All")}>
-        <option value="All">All</option>
-        {EXPENSE_CATEGORIES.map((category) => (
-          <option key={category} value={category}>{category}</option>
-        ))}
-      </select>
+      <CategorySelect value={filteredCategory} onChange={setFilteredCategory} includeAll/>
 
       <ExpenseList expenses={filteredExpenses} onDelete={handleDelete} onEdit={handleEdit} />
       <h3>Total : {total}</h3>

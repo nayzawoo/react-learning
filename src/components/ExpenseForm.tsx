@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { Expense, ExpenseCategory } from '../types/expense';
 import { EXPENSE_CATEGORIES } from '../types/expense';
+import CategorySelect from './CategorySelect';
 
 type ExpenseFormProps = {
     onAdd: (title: string, amount: number, category: ExpenseCategory) => void;
@@ -37,16 +38,16 @@ export default function ExpenseForm({
         console.log('submit');
         console.log(title, amount);
 
-        const trimedTitle = title.trim();
+        const trimmedTitle = title.trim();
         const numericAmount = Number(amount);
 
-        if (trimedTitle === '') {
+        if (trimmedTitle === '') {
             setError("Title is required");
             return;
         }
 
         if (numericAmount <= 0) {
-            setError("Ammount must be greater than 0");
+            setError("Amount must be greater than 0");
             return;
         }
 
@@ -55,14 +56,14 @@ export default function ExpenseForm({
         if (editingExpense) {
             onUpdate({
                 ...editingExpense,
-                title: trimedTitle,
+                title: trimmedTitle,
                 amount: numericAmount,
                 category
             });
             return;
         }
 
-        onAdd(trimedTitle, numericAmount, category);
+        onAdd(trimmedTitle, numericAmount, category);
 
         setTitle("");
         setAmount("");
@@ -79,11 +80,7 @@ export default function ExpenseForm({
             <p>Amount</p>
             <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
             <br />
-            <select name="cateory" id="category" value={category} onChange={(e) => setCategory(e.target.value as ExpenseCategory)}>
-                {EXPENSE_CATEGORIES.map((category) => (
-                    <option key={category} value={category}>{category}</option>
-                ))}
-            </select>
+            <CategorySelect value={category} onChange={setCategory}/>
             <br />
             {editingExpense && (
 
@@ -91,7 +88,7 @@ export default function ExpenseForm({
                     type='button'
                     onClick={onCancelEdit}
                 >
-                    Cancle
+                    Cancel
                 </button>
             )}
             <button type='submit'>
