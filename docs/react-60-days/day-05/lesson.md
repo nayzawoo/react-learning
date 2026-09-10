@@ -485,7 +485,7 @@ git commit -m "learn: complete React Day 05"
 git tag -a day-05-complete -m "React Day 05 complete"
 ```
 
-Annotated tag: `day-05-complete`. Remote သို့ push မလုပ်ရသေးပါ။
+Annotated completion tag: `day-05-complete`.
 
 ## Next Day Context
 

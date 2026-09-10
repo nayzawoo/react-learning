@@ -4,108 +4,92 @@
 
 **Planned — Not started**
 
-_ဒီ day ရောက်ချိန်မှာ current repository, installed versions နဲ့ student understanding ကိုပြန်စစ်ပြီးမှ lesson detail ကိုချဲ့ရန်။_
+This is a lightweight future-lesson outline. Refine it from the current repository only when Day 7 becomes active.
 
 ## Purpose
 
-Complex သို့မဟုတ် related State transitions များကို reducer, action နဲ့ dispatch mental model ဖြင့်ခွဲစီမံရန်။
-
-## Previous Day Review
-
-Day 06 — useRef, DOM refs, State vs Ref မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
+Complex or related State transitions ကို reducer, action, and dispatch mental model ဖြင့်ရှင်းလင်းစွာစီမံတတ်ရန်။
 
 ## Prerequisites
 
-- Immutable State updates, functional updaters နဲ့ TypeScript unions
-- `PROGRESS.md` ရှိ previous-day completion evidence
-- Lesson မစမီ relevant source files ကို inspect လုပ်ထားခြင်း
+- Immutable State updates and functional updaters
+- TypeScript discriminated unions
+- Actual Day 6 evidence, once completed
 
 ## Learning Objectives
 
-- Core concepts များကို Burmese ဖြင့် ကိုယ်ပိုင်စကားနဲ့ရှင်းပြနိုင်ရန်
-- Current repository context မှာ ဘယ် problem ကိုဖြေရှင်းပေးသလဲဆုံးဖြတ်နိုင်ရန်
-- Small guided implementation ကို student ကိုယ်တိုင်ရေးနိုင်ရန်
-- Common mistakes ကိုသိပြီး behavior/build/lint ဖြင့်အတည်ပြုနိုင်ရန်
+- Reducer purity and current State → action → next State flow ကိုရှင်းပြနိုင်ရန်
+- `dispatch` and action objects ကို event language အဖြစ်သုံးနိုင်ရန်
+- TypeScript action union ကို narrow လုပ်နိုင်ရန်
+- `useState` and `useReducer` ကို complexity/responsibility အရရွေးနိုင်ရန်
 
-## Core Concepts
+## Core Preview
 
-- `useReducer` — State transition logic ကို reducer function ထဲစုခြင်း
-- Reducer purity — current State နဲ့ action မှ next State ပြန်ခြင်း
-- `dispatch` နဲ့ action objects
-- TypeScript action unions နဲ့ exhaustive handling
-- `useState` vs `useReducer` decision
+```text
+UI event → dispatch(action) → reducer(currentState, action) → nextState → render
+```
 
-## Mental Model
+Reducer က side effects မလုပ်ဘဲ inputs နှစ်ခုမှ next State ကိုပြန်ပေးရမည်။ Unrelated State အားလုံးကို reducer တစ်ခုထဲအတင်းစုရန်မဟုတ်ပါ။
 
-UI က “ဘယ် value သတ်မှတ်မလဲ” လို့ပြောမည့်အစား “ဘာ event ဖြစ်ခဲ့လဲ” ဆိုသော action ကို dispatch လုပ်ပြီး reducer က next State ကိုဆုံးဖြတ်တယ်။
+## Candidate Exercises
 
-## Implementation Tasks
+- Current Expense Manager ရှိ related transitions ကို audit လုပ်ရန်
+- State and action types ကို code မရေးမီ design လုပ်ရန်
+- Small bounded State group တစ်ခုကို hint-first reducer refactor လုပ်ရန်
+- Reducer ကို pure function အဖြစ် input/output examples ဖြင့်စစ်ရန်
+- Existing behavior မပြောင်းကြောင်း verify လုပ်ရန်
 
-1. Expense flow ထဲက related transitions ကိုစာရင်းထုတ်ရန်
-2. Reducer State နဲ့ action types ကို design လုပ်ရန်
-3. Small, bounded State group တစ်ခုကို reducer ဖြင့် guided refactor လုပ်ရန်
-4. Behavior မပြောင်းကြောင်း Add/Edit/Delete/Cancel flows စစ်ရန်
+Exact implementation scope and manual tests must be refined when Day 7 is current. Do not implement this lesson early.
 
-Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
+## Review Questions
 
-## Guided Exercises
-
-- Action တစ်မျိုးချင်းအတွက် current State → next State examples ရေးရန်
-- Reducer ကို React Component ပြင်ပ pure function အဖြစ်စမ်းရန်
-
-## Mini Challenges
-
-Unknown action သို့မဟုတ် missing case ကို TypeScript ဖြင့်ဖမ်းနိုင်မည့် design ရေးရန်။
-
-## Quiz / Review Questions
-
-1. Reducer တစ်ခုက pure ဖြစ်ရသည့်အကြောင်းကဘာလဲ။
+1. Reducer purity က predictable State transitions ကိုဘယ်လိုကူညီသလဲ။
 2. ဘယ်အခြေအနေမှာ `useState` က `useReducer` ထက်ပိုရိုးရှင်းသလဲ။
-3. ဒီနေ့ရွေးထားသော design ကို simpler alternative တစ်ခုနဲ့နှိုင်းပြီး tradeoff ကိုရှင်းပြပါ။
-
-**Student answers:** _To be completed during Day 7 review._
+3. TypeScript action union က invalid transitions/actions ကိုဘယ်လိုကာကွယ်နိုင်သလဲ။
 
 ## Common Mistakes
 
-- Reducer ထဲမှာ State ကို mutate လုပ်ခြင်း
-- Action type ကို broad `string` အဖြစ်ထားခြင်း
-- Unrelated State အားလုံးကို reducer တစ်ခုထဲအတင်းထည့်ခြင်း
+- Mutating State inside the reducer
+- Using a broad `string` action type
+- Performing side effects inside the reducer
+- Combining unrelated State without a clear benefit
+
+## Session Evidence
+
+### Exercises Completed
+
+### Concept Explanations
+
+### Quiz / Review Evidence
+
+### Manual Tests
+
+### Mistakes / Corrections
+
+### Implementation Evidence
+
+### Mini Challenges
 
 ## Completion Criteria
 
-- [ ] Core concepts ကို student က ကိုယ်ပိုင်စကားဖြင့်ရှင်းပြနိုင်သည်။
-- [ ] Planned implementation ကို hint-first workflow နဲ့ student ကရေးပြီး required behavior အောင်မြင်သည်။
-- [ ] Guided exercises, mini challenge နဲ့ quiz/review ပြီးသည်။
-- [ ] Existing working functionality မပျက်ပါ။
-- [ ] `npm run build` အောင်မြင်သည်။
-- [ ] `npm run lint` အောင်မြင်သည်။
-- [ ] Actual learning, problems နဲ့ repository notes ကို update လုပ်သည်။
-- [ ] Git checkpoint ပြုလုပ်သည်။
+_Define precise criteria when Day 7 becomes current. Validation and Git behavior come from `../PROTOCOLS.md`._
 
 ## What I Actually Learned
 
-_To be completed after finishing Day 7._
+_Complete from actual evidence only._
 
 ## Problems / Mistakes I Made
 
-_To be completed after attempting Day 7; မဖြစ်ခဲ့သော mistake ကိုမဖန်တီးရန်။_
+_Record only mistakes that actually occur._
 
 ## Important Code Patterns
 
-_To be recorded from the student's actual Day 7 implementation. Source snapshot ကိုဒီ folder ထဲမကူးဘဲ relevant file/commit ကိုသာညွှန်းရန်။_
+_Record only patterns from the student's actual implementation._
 
 ## Git Checkpoint
 
-Completion criteria ပြည့်ပြီးမှ English commit message သုံးပြီး checkpoint လုပ်ရန်။
-
-```bash
-npm run build
-npm run lint
-git commit -m "Day 07: Complete useReducer"
-```
-
-Optional tag: `day-07-complete`. Tag/commit ကို lesson မပြီးမီ မဖန်တီးရ။
+Follow the **Complete Current Day** protocol in `../PROTOCOLS.md`.
 
 ## Next Day Context
 
-Day 8 မှာ distant Components များထံ shared value ပေးရန် Context API နဲ့ `useContext` ကိုလေ့လာမည်။
+Day 8 introduces Context API and `useContext` for shared values across distant components.

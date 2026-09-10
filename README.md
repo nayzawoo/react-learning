@@ -1,38 +1,52 @@
 # React Learning — 60 Days of React + TypeScript
 
-This repository documents a structured, hands-on 60-day journey through modern React and TypeScript. It is both a learning workspace and a public record of how one application codebase evolves as new concepts are introduced, practiced, reviewed, and verified.
+A hands-on React + TypeScript learning repository built around one evolving application. Important code is written by the student, while lessons emphasize mental models, practical exercises, review, and verified checkpoints.
 
-## Current project and status
+## Current status
 
-The active project is **Expense Manager**, the first project in the curriculum.
+- **Project:** Expense Manager — Project 1, Days 1–10
+- **Current day:** Day 6 of 60 — `useRef`, DOM refs, State vs Ref
+- **Status:** Current / Not started
+- **Completed:** Days 1–5
+- **Implemented:** Add/Edit/Update/Delete, Cancel Edit, category filtering, case-insensitive title search, filtered count/total, and `localStorage` persistence
 
-- **Current learning day:** Day 5 of 60 — Search + Combined Filtering + Derived State Design
-- **Completed days:** Days 1–4
-- **Day 5 status:** Current / Not completed
-- **Implemented so far:** add, edit, update, delete, cancel edit, category filtering, filtered totals, and `localStorage` persistence
-
-Progress information comes from [PROGRESS.md](docs/react-60-days/PROGRESS.md), which is the source of truth for the current day and completed work. Features planned for later lessons are not represented as complete here.
+[PROGRESS.md](docs/react-60-days/PROGRESS.md) is the source of truth for this summary and is synchronized by the learning protocols whenever the learning state changes materially.
 
 ## Learning approach
 
-The goal is not to race through a copy/paste tutorial. Important learning code is written manually so that each React mental model, TypeScript decision, bug, and tradeoff can be understood and explained. Exercises, review, and validation matter alongside working code.
+`src/` is one continuously evolving application. Git history preserves earlier implementation states instead of duplicated lesson-project folders. Lessons are primarily in Burmese while standard technical terms remain in English.
 
-The application in `src/` is one continuously evolving codebase. Earlier implementation states are preserved through Git history and daily completion tags instead of duplicated lesson-project folders.
+- [Progress tracker](docs/react-60-days/PROGRESS.md)
+- [Curriculum roadmap](docs/react-60-days/ROADMAP.md)
+- [Current Day 6 lesson](docs/react-60-days/day-06/lesson.md)
+- [Agent learning protocols](docs/react-60-days/PROTOCOLS.md)
 
-Detailed lesson explanations are written primarily in Burmese, while standard technical terminology remains in English.
+## Codex learning commands
+
+These are natural-language Agent protocol triggers, not shell commands.
+
+| Command                   | Purpose                                                                 |
+| ------------------------- | ----------------------------------------------------------------------- |
+| `start current lesson`    | Start the current day detected from `PROGRESS.md`                       |
+| `continue current lesson` | Resume from recorded evidence and unfinished work                       |
+| `validate current work`   | Check implementation and validation without completing the day         |
+| `prepare next lesson`     | Prepare the current upcoming lesson from roadmap + repository state     |
+| `Day X complete`          | Validate, update docs/progress/README, commit and create completion tag |
+| `finish Day X and push`   | Complete the day, then push main and its completion tag                 |
+| `push completed day`      | Push an already completed/tagged day                                    |
+
+Detailed behavior and Git permissions live only in [PROTOCOLS.md](docs/react-60-days/PROTOCOLS.md).
 
 ## Curriculum overview
 
-The 60 days are organized into six phases:
+1. React Core & Mental Model
+2. Real Application Foundations
+3. Production Data & Application Architecture
+4. State Management, Testing & Quality
+5. Advanced / Production React
+6. Next.js + Production + Career
 
-1. **React Core & Mental Model** — components, state, effects, reusable components, reducers, context, and custom hooks
-2. **Real Application Foundations** — asynchronous work, APIs, routing, forms, validation, and application structure
-3. **Production Data & Application Architecture** — server state, authentication, API integration, failure UX, and code splitting
-4. **State Management, Testing & Quality** — state architecture, Redux Toolkit, and application testing
-5. **Advanced / Production React** — accessibility, responsive UI, design systems, advanced TypeScript, performance, and modern React patterns
-6. **Next.js + Production + Career** — App Router, Server Components, production hardening, assessment, and portfolio release
-
-See the complete [60-day roadmap](docs/react-60-days/ROADMAP.md), the live [progress tracker](docs/react-60-days/PROGRESS.md), and the [daily lesson folders](docs/react-60-days/). The active lesson is [Day 5](docs/react-60-days/day-05/lesson.md).
+See [ROADMAP.md](docs/react-60-days/ROADMAP.md) for canonical daily topics.
 
 ## Project progression
 
@@ -42,20 +56,9 @@ See the complete [60-day roadmap](docs/react-60-days/ROADMAP.md), the live [prog
 | Project 2 | Task Manager / Productivity App | Days 20–40 | Planned |
 | Project 3 | Production Capstone | Days 50–60 | Planned |
 
-## Current technologies
-
-- React 19
-- TypeScript 6
-- Vite 8
-- Modern CSS
-- Oxlint
-- Browser `localStorage`
-
-No UI framework is used in the current Expense Manager implementation.
-
 ## Getting started
 
-Requirements: a current Node.js installation and npm.
+Requires a current Node.js installation and npm.
 
 ```bash
 git clone <repository-url>
@@ -64,45 +67,26 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite in your browser.
-
-## Available commands
+## npm scripts
 
 | Command | Purpose |
 | --- | --- |
-| `npm run dev` | Start the Vite development server with hot module replacement |
-| `npm run build` | Type-check the project and create a production build |
-| `npm run lint` | Check the source with Oxlint |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Type-check and create a production build |
+| `npm run lint` | Check source with Oxlint |
+| `npm run verify` | Run the complete current validation suite |
 | `npm run preview` | Preview the production build locally |
 
 ## Repository structure
 
 ```text
 .
-├── src/
-│   ├── components/          # React components for the evolving application
-│   ├── types/               # Shared TypeScript domain types
-│   ├── App.tsx              # Current application composition and state owner
-│   ├── App.css              # Application-specific presentation
-│   └── index.css            # Global styles and shared visual variables
+├── src/                              # Single evolving React application
 ├── docs/react-60-days/
-│   ├── ROADMAP.md           # Canonical 60-day curriculum
-│   ├── PROGRESS.md          # Current day, completed work, and learning notes
-│   └── day-XX/lesson.md     # Objectives, exercises, review, and daily records
-├── AGENTS.md                # Repository workflow and teaching guidance
-└── package.json             # Project scripts and dependencies
+│   ├── PROGRESS.md                   # Current learning state
+│   ├── ROADMAP.md                    # Canonical curriculum
+│   ├── PROTOCOLS.md                  # Agent workflow behavior
+│   └── day-XX/lesson.md              # Lesson content and real evidence
+├── AGENTS.md                         # Concise context router and essential rules
+└── package.json                      # Scripts and dependencies
 ```
-
-## Git learning checkpoints
-
-A completed learning day is recorded with an annotated tag in this format:
-
-```text
-day-04-complete
-```
-
-Tags are created only after that day's documented learning criteria, exercises, review, required functionality, build, and lint checks have been completed. The current Day 5 work has not been marked complete.
-
-## Continuous evolution
-
-This repository changes continuously throughout the course. The root application always represents the latest learning state; use the roadmap and progress tracker for curriculum context, and Git history or the daily tags to inspect earlier milestones.

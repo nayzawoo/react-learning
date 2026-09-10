@@ -78,8 +78,7 @@ Feature တစ်ခုရွေးပြီး Event → State transition → D
 - [ ] Planned implementation ကို hint-first workflow နဲ့ student ကရေးပြီး required behavior အောင်မြင်သည်။
 - [ ] Guided exercises, mini challenge နဲ့ quiz/review ပြီးသည်။
 - [ ] Existing working functionality မပျက်ပါ။
-- [ ] `npm run build` အောင်မြင်သည်။
-- [ ] `npm run lint` အောင်မြင်သည်။
+- [ ] `npm run verify` အောင်မြင်သည်။
 - [ ] Actual learning, problems နဲ့ repository notes ကို update လုပ်သည်။
 - [ ] Git checkpoint ပြုလုပ်သည်။
 
@@ -97,15 +96,7 @@ _To be recorded from the student's actual Day 10 implementation. Source snapshot
 
 ## Git Checkpoint
 
-Completion criteria ပြည့်ပြီးမှ English commit message သုံးပြီး checkpoint လုပ်ရန်။
-
-```bash
-npm run build
-npm run lint
-git commit -m "Day 10: Complete Checkpoint #1 + Expense App Refactor"
-```
-
-Optional tag: `day-10-complete`. Tag/commit ကို lesson မပြီးမီ မဖန်တီးရ။
+Follow the **Complete Current Day** protocol in `../PROTOCOLS.md`.
 
 ## Next Day Context
 

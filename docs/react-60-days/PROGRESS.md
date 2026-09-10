@@ -112,12 +112,8 @@ Day 5 တွင် State/Derived Value classification, search State, controlled 
 
 ## Repository State Notes
 
-- Day 5 completion မတိုင်မီ working tree တွင် student ရေးသားထားသော `src/App.tsx` search changes နဲ့ `src/components/SearchInput.tsx` အသစ်ရှိသည်။
 - Inspected application versions: React `^19.2.8`, TypeScript `~6.0.2`, Vite `^8.2.2`.
 - `src/App.tsx` က `searchText` နဲ့ category filter State ကိုပိုင်ဆိုင်ပြီး normalized combined result ကို Derived Value အဖြစ်တွက်သည်။ Controlled `SearchInput` က `value`/`onChange` Props ကိုသုံးပြီး `ExpenseList`, count နဲ့ total တို့က same filtered result ကိုသုံးသည်။
 - `src/` သည် historical copies မပြုလုပ်ဘဲ single evolving source အဖြစ်ဆက်ထားရမည်။
-- Day 1–4 annotated completion tags များကို `origin` သို့ push ထားသည်။ Day 5 အတွက် local annotated tag `day-05-complete` ကို verified completion commit တွင်ဖန်တီးထားပြီး push မလုပ်ရသေးပါ။
-- Documentation workflow commit မတိုင်မီ `npm run build` နှင့် `npm run lint` နှစ်ခုလုံးအောင်မြင်ပြီး lint warning မရှိပါ။
 - Day 5 completion validation တွင် `npm run build` နဲ့ `npm run lint` အောင်မြင်သည်။
-- Day 5 source နဲ့ learning documentation ကို completion checkpoint တစ်ခုတည်းတွင် commit လုပ်ပြီး annotated tag ဖန်တီးရန်စစ်ဆေးထားသည်။
 - Last updated: 2026-09-10 (Day 5 completed; Day 6 is current and not started).
