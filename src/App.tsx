@@ -4,6 +4,7 @@ import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 import CategorySelect from './components/CategorySelect';
 import './App.css';
+import SearchInput from './components/SearchInput';
 
 function App() {
   const [expenses, setExpenses] = useState<Expense[]>(() => {
@@ -17,14 +18,21 @@ function App() {
 
   const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
   const [filteredCategory, setFilteredCategory] = useState<ExpenseCategory | "All">("All");
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(expenses));
   }, [expenses]);
 
-  const filteredExpenses = filteredCategory === "All" ? expenses : expenses.filter(
-    (expense) => expense.category === filteredCategory
-  );
+  const normalizedSearchText = searchText.trim().toLowerCase();
+
+  const filteredExpenses = expenses.filter((expense) => {
+    const matchesCategory = filteredCategory === "All" || expense.category === filteredCategory;
+
+    const matchesSearch = expense.title.toLowerCase().includes(normalizedSearchText);
+
+    return matchesCategory && matchesSearch;
+  });
 
   const total = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0);
 
@@ -101,7 +109,9 @@ function App() {
               <CategorySelect value={filteredCategory} onChange={setFilteredCategory} includeAll />
             </div>
           </div>
-
+          <div>
+            <SearchInput value={searchText} onChange={setSearchText}/>
+          </div>
           <ExpenseList expenses={filteredExpenses} onDelete={handleDelete} onEdit={handleEdit} />
 
           <div className="total-summary" aria-live="polite">

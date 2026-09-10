@@ -2,9 +2,9 @@
 
 ## Status
 
-Status: Current / Not completed
+Status: Completed
 
-ဒီဖိုင်က Day 5 အတွက် teaching plan ဖြစ်သည်။ ဒီ documentation setup လုပ်ချိန်မှာ Search application code ကို မထည့်ထားသေးဘဲ student implementation အတွက်ပဲပြင်ဆင်ထားသည်။
+Student က search implementation, exercises, manual tests နဲ့ quiz/review ကိုပြီးစီးခဲ့ပြီး source verification, build နဲ့ lint အောင်မြင်ပြီးနောက် Day 5 ကို completed အဖြစ်မှတ်တမ်းတင်ထားသည်။
 
 ## Purpose
 
@@ -339,7 +339,7 @@ Working filter ရပြီးနောက်—
 
 ## Quiz / Review Questions
 
-Student answers ကို ဒီ section အောက်တွင် lesson ပြီးမှဖြည့်ရန်။ အခုအချိန်မှာ answers မဖြည့်ရသေးပါ။
+Student answers ကို Day 5 review တွင်ဆွေးနွေးပြီး concept understanding ကိုအတည်ပြုခဲ့သည်။
 
 1. `searchText` က ဘာကြောင့် State ဖြစ်သလဲ။
 2. `filteredExpenses` က ဘာကြောင့် Derived Value ဖြစ်သလဲ။
@@ -356,7 +356,15 @@ Student answers ကို ဒီ section အောက်တွင် lesson ပ�
 13. Count, list နဲ့ total သုံးခုဟာ ဘာကြောင့် filtered result တစ်ခုတည်းကိုသုံးသင့်သလဲ။
 14. Combined predicate ကို readable ဖြစ်အောင် ဘယ်လိုခွဲရေးမလဲ။
 
-**Student answers:** _To be completed during Day 5 review._
+**Student answers:**
+
+- `searchText` သည် user input ကို render များကြားမှတ်ထားပြီး rendered UI ကိုသက်ရောက်စေသောကြောင့် State ဖြစ်သည်။ `filteredExpenses` သည် `expenses`, `filteredCategory`, `searchText` တို့မှအမြဲပြန်တွက်နိုင်သောကြောင့် Derived Value ဖြစ်သည်။
+- Controlled input flow သည် user input → `onChange` → `e.target.value` → `setSearchText(...)` → re-render → updated `value` Props → filtering recalculation ဖြစ်သည်။
+- `trim()` က query အစ/အဆုံး whitespace ဖယ်သည်၊ `toLowerCase()` က case-insensitive comparison အတွက် normalize လုပ်သည်၊ `includes()` က normalized title ထဲမှာ normalized query ပါမပါစစ်သည်။
+- `matchesCategory` က `"All"` သို့ exact category match ကိုစစ်ပြီး `matchesSearch` က title search ကိုစစ်သည်။ `matchesCategory && matchesSearch` ကြောင့် active conditions နှစ်ခုစလုံးကိုက်မှ expense ကိုပြသည်။
+- `filteredExpenses` ကို State + `useEffect` ဖြင့် sync လုပ်လျှင် duplicate State ဖြစ်ပြီး dependency တစ်ခုကျန်ခဲ့ပါက stale/wrong result ဖြစ်နိုင်သည်။
+- `App` က query နဲ့ category နှစ်ခုစလုံးကိုသိရန်လိုသောကြောင့် `searchText` ကိုပိုင်သည်။ `SearchInput` က `value` နဲ့ `onChange` လက်ခံသော controlled UI Component ဖြစ်ပြီး `ExpenseList` က already-filtered expenses ကို render လုပ်ရန်သာတာဝန်ယူသည်။
+- Count, list နဲ့ total တို့သည် current visible result တစ်ခုတည်းကိုသုံးသဖြင့် UI အစိတ်အပိုင်းများအကြား result မကွဲနိုင်ပါ။
 
 ## Common Mistakes
 
@@ -381,54 +389,57 @@ Day 5 ကို Completed လို့ update မလုပ်မီ အားလ
 
 ### Understanding
 
-- [ ] `searchText` State နဲ့ `filteredExpenses` Derived Value ဖြစ်ရသည့်အကြောင်းကို ကိုယ်ပိုင်စကားဖြင့်ရှင်းပြနိုင်သည်။
-- [ ] Controlled input data flow ကိုရှင်းပြနိုင်သည်။
-- [ ] `filter`, `includes`, `toLowerCase`, `trim` နဲ့ combined Boolean logic တို့၏တာဝန်ကိုရှင်းပြနိုင်သည်။
-- [ ] Unnecessary State/Effect design ရဲ့ sync risk ကိုရှင်းပြနိုင်သည်။
-- [ ] Component Responsibility နဲ့ State owner ကိုကာကွယ်ပြောဆိုနိုင်သည်။
+- [x] `searchText` State နဲ့ `filteredExpenses` Derived Value ဖြစ်ရသည့်အကြောင်းကို ကိုယ်ပိုင်စကားဖြင့်ရှင်းပြနိုင်သည်။
+- [x] Controlled input data flow ကိုရှင်းပြနိုင်သည်။
+- [x] `filter`, `includes`, `toLowerCase`, `trim` နဲ့ combined Boolean logic တို့၏တာဝန်ကိုရှင်းပြနိုင်သည်။
+- [x] Unnecessary State/Effect design ရဲ့ sync risk ကိုရှင်းပြနိုင်သည်။
+- [x] Component Responsibility နဲ့ State owner ကိုကာကွယ်ပြောဆိုနိုင်သည်။
 
 ### Functionality
 
-- [ ] Search input က controlled ဖြစ်သည်။
-- [ ] Empty search မှာ category filter အတိုင်း results ပြသည်။
-- [ ] Search က case-insensitive ဖြစ်သည်။
-- [ ] Leading/trailing whitespace policy မှန်ကန်သည်။
-- [ ] Category + search conditions နှစ်ခုစလုံးပေါင်းအလုပ်လုပ်သည်။
-- [ ] No-match case မှာ existing empty UI နဲ့ total အဓိပ္ပာယ်မှန်သည်။
-- [ ] Add/Edit/Delete နဲ့ `localStorage` behavior မပျက်ပါ။
-- [ ] Count, list နဲ့ total က same filtered result ကိုသုံးသည်။
+- [x] Search input က controlled ဖြစ်သည်။
+- [x] Empty search မှာ category filter အတိုင်း results ပြသည်။
+- [x] Search က case-insensitive ဖြစ်သည်။
+- [x] Leading/trailing whitespace policy မှန်ကန်သည်။
+- [x] Category + search conditions နှစ်ခုစလုံးပေါင်းအလုပ်လုပ်သည်။
+- [x] No-match case မှာ existing empty UI နဲ့ total အဓိပ္ပာယ်မှန်သည်။
+- [x] Add/Edit/Delete နဲ့ `localStorage` behavior မပျက်ပါ။
+- [x] Count, list နဲ့ total က same filtered result ကိုသုံးသည်။
 
 ### Practice and Quality
 
-- [ ] Guided exercises နဲ့ အနည်းဆုံး mini challenge တစ်ခုပြီးသည်။
-- [ ] Quiz/review answers ကိုဆွေးနွေးပြီးဖြစ်သည်။
-- [ ] Filter predicate ကို named Boolean conditions ဖြင့်ဖတ်လွယ်အောင်ထားသည်။
-- [ ] Unnecessary dependency မထည့်ထားပါ။
-- [ ] `npm run build` အောင်မြင်သည်။
-- [ ] `npm run lint` အောင်မြင်သည်။
-- [ ] `What I Actually Learned` နဲ့ `Problems / Mistakes I Made` ကို evidence အတိုင်းဖြည့်သည်။
-- [ ] Git checkpoint ပြုလုပ်သည်။
+- [x] Guided exercises နဲ့ အနည်းဆုံး mini challenge တစ်ခုပြီးသည်။
+- [x] Quiz/review answers ကိုဆွေးနွေးပြီးဖြစ်သည်။
+- [x] Filter predicate ကို named Boolean conditions ဖြင့်ဖတ်လွယ်အောင်ထားသည်။
+- [x] Unnecessary dependency မထည့်ထားပါ။
+- [x] `npm run build` အောင်မြင်သည်။
+- [x] `npm run lint` အောင်မြင်သည်။
+- [x] `What I Actually Learned` နဲ့ `Problems / Mistakes I Made` ကို evidence အတိုင်းဖြည့်သည်။
+- [x] Git checkpoint ပြုလုပ်သည်။
 
 ## What I Actually Learned
 
-_To be completed after finishing Day 5. Student က ကိုယ်ပိုင်စကားဖြင့် concept နဲ့ implementation insight များကိုရေးရန်။_
+- User input ဖြစ်သော `searchText` ကို State အဖြစ်ထားပြီး ပြန်တွက်နိုင်သော `filteredExpenses` ကို Derived Value အဖြစ်ထားရသည်။
+- Controlled input မှာ `value` ကို State မှပေးပြီး `onChange` မှတစ်ဆင့် State ကို update လုပ်သော data flow ကိုနားလည်ခဲ့သည်။
+- `trim()` နဲ့ `toLowerCase()` ဖြင့် query normalize လုပ်ပြီး `includes()` ဖြင့် case-insensitive substring search တည်ဆောက်ခဲ့သည်။
+- Category နဲ့ search ကို `matchesCategory`, `matchesSearch` named Booleans နှစ်ခုခွဲပြီး `&&` ဖြင့် readable combined predicate တည်ဆောက်ခဲ့သည်။
+- Filtering policy ကို common parent ဖြစ်သော `App` မှာထားပြီး `SearchInput` ကို controlled UI Component၊ `ExpenseList` ကို rendering Component အဖြစ် responsibility ခွဲခဲ့သည်။
+- Derived result ကို duplicate State/Effect မထားဘဲ count, list နဲ့ total အတွက်တစ်နေရာတည်းမှအသုံးပြုခြင်းက stale result risk ကိုရှောင်ပေးသည်။
+- State/Derived Value classification, search State, controlled input, combined filtering, manual test matrix နဲ့ readability refactor exercises ပြီးစီးခဲ့သည်။ Whitespace နှင့် combined filtering mini challenges ကိုလည်းစမ်းသပ်ခဲ့သည်။
 
 ## Problems / Mistakes I Made
 
-_To be completed after attempting Day 5. Error message, incorrect assumption, cause နဲ့ fix ကိုတတ်နိုင်သမျှအတိအကျရေးရန်။_
+Problem: Manual test review တွင် `Category = Shopping`, `Search = "office"` အတွက် result ကို အစမှာ `[]` ဟုမှားဖြေခဲ့သည်။
 
-Suggested format:
+Why it happened: Category condition နဲ့ search condition နှစ်ခုစလုံးကို actual expense data ပေါ်မှာအတူမစစ်မိခဲ့သည်။
 
-```text
-Problem:
-Why it happened:
-How I fixed it:
-Rule I want to remember:
-```
+How I fixed it: `Office Chair` သည် Shopping category ဖြစ်ပြီး title တွင် `office` ပါသဖြင့် conditions နှစ်ခုစလုံး match ဖြစ်ကြောင်းပြန်စစ်ကာ correct result သည် `Office Chair` ဖြစ်ကြောင်းပြင်ခဲ့သည်။
+
+Rule I want to remember: Combined filter result ခန့်မှန်းရာတွင် item တစ်ခုစီအတွက် `matchesCategory && matchesSearch` ကိုအတိအကျစစ်ရန်။
 
 ## Important Code Patterns
 
-အောက်ပါ skeleton က logic structure ကိုပြရန်သာဖြစ်ပြီး final implementation မဟုတ်ပါ။ Student က current application types နဲ့ conditions ကိုဖြည့်ရမည်။
+Day 5 final implementation တွင်အသုံးပြုထားသော pattern:
 
 ```tsx
 const [searchText, setSearchText] = useState("");
@@ -436,8 +447,11 @@ const [searchText, setSearchText] = useState("");
 const normalizedSearchText = searchText.trim().toLowerCase();
 
 const filteredExpenses = expenses.filter((expense) => {
-  const matchesCategory = /* define the category rule */;
-  const matchesSearch = /* compare normalized title and query */;
+  const matchesCategory =
+    filteredCategory === "All" || expense.category === filteredCategory;
+  const matchesSearch = expense.title
+    .toLowerCase()
+    .includes(normalizedSearchText);
 
   return matchesCategory && matchesSearch;
 });
@@ -461,16 +475,17 @@ Derive everything that can be calculated.
 
 ## Git Checkpoint
 
-Completion criteria အားလုံးပြည့်ပြီးမှ checkpoint လုပ်ရန်။
+Day 5 source နဲ့ learning documentation ကို အောက်ပါ completion checkpoint ဖြင့်မှတ်တမ်းတင်သည်။
 
 ```bash
 npm run build
 npm run lint
 git add src docs/react-60-days
-git commit -m "Day 5: Add combined expense search filtering"
+git commit -m "learn: complete React Day 05"
+git tag -a day-05-complete -m "React Day 05 complete"
 ```
 
-Optional tag convention: `day-05-complete`. ဒီ documentation task မှာ commit/tag မဖန်တီးထားသလို Search code လည်းမရေးထားပါ။
+Annotated tag: `day-05-complete`. Remote သို့ push မလုပ်ရသေးပါ။
 
 ## Next Day Context
 
