@@ -15,7 +15,7 @@ type CategorySelectProps =
 export default function CategorySelect(props: CategorySelectProps
 ) {
     return (
-        <select name="cateory" id="category" value={props.value} onChange={(e) => {
+        <select name="category" id="category" value={props.value} onChange={(e) => {
             if (props.includeAll) {
                 props.onChange(e.target.value as ExpenseCategory | "All");
                 return;

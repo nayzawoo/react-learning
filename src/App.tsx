@@ -1,4 +1,3 @@
-// import './App.css'
 import { useEffect, useState } from 'react';
 import { type Expense, type ExpenseCategory } from './types/expense';
 import ExpenseList from './components/ExpenseList';
@@ -57,7 +56,7 @@ function App() {
   ) => {
     title = title.trim();
     amount = Number(amount);
-    if (title == '') {
+    if (title === '') {
       return;
     }
 
