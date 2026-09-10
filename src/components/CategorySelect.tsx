@@ -15,14 +15,20 @@ type CategorySelectProps =
 export default function CategorySelect(props: CategorySelectProps
 ) {
     return (
-        <select name="category" id="category" value={props.value} onChange={(e) => {
-            if (props.includeAll) {
-                props.onChange(e.target.value as ExpenseCategory | "All");
-                return;
-            }
+        <select
+            className="category-select"
+            name="category"
+            id={props.includeAll ? "filter-category" : "expense-category"}
+            value={props.value}
+            onChange={(e) => {
+                if (props.includeAll) {
+                    props.onChange(e.target.value as ExpenseCategory | "All");
+                    return;
+                }
 
-            props.onChange(e.target.value as ExpenseCategory);
-        }}>
+                props.onChange(e.target.value as ExpenseCategory);
+            }}
+        >
             {props.includeAll && (
                 <option value="All">All</option>
             )}

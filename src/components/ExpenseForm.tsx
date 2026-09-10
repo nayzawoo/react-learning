@@ -58,29 +58,55 @@ export default function ExpenseForm({
 
     return (
         <form
+            className="expense-form"
             onSubmit={handleSubmit}
         >
-            { error && <p style={{ color: 'red'}}>{error}</p>}
-            <p>Title</p>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+            {error && <p className="form-error" role="alert">{error}</p>}
 
-            <p>Amount</p>
-            <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
-            <br />
-            <CategorySelect value={category} onChange={setCategory}/>
-            <br />
-            {editingExpense && (
+            <div className="form-field">
+                <label htmlFor="expense-title">Title</label>
+                <input
+                    id="expense-title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="e.g. Groceries"
+                />
+            </div>
 
-                <button
-                    type='button'
-                    onClick={onCancelEdit}
-                >
-                    Cancel
+            <div className="form-field">
+                <label htmlFor="expense-amount">Amount</label>
+                <div className="amount-input">
+                    <span aria-hidden="true">$</span>
+                    <input
+                        id="expense-amount"
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        placeholder="0.00"
+                    />
+                </div>
+            </div>
+
+            <div className="form-field">
+                <label htmlFor="expense-category">Category</label>
+                <CategorySelect value={category} onChange={setCategory}/>
+            </div>
+
+            <div className="form-actions">
+                {editingExpense && (
+                    <button
+                        className="button button-secondary"
+                        type='button'
+                        onClick={onCancelEdit}
+                    >
+                        Cancel
+                    </button>
+                )}
+                <button className="button button-primary" type='submit'>
+                    {editingExpense ? 'Update Expense' : 'Add Expense'}
                 </button>
-            )}
-            <button type='submit'>
-                {editingExpense ? 'Update Expense' : 'Add Expense'}
-            </button>
+            </div>
         </form>
     )
 }
