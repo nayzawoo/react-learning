@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { Expense, ExpenseCategory } from '../types/expense';
 import CategorySelect from './CategorySelect';
 
@@ -15,22 +15,10 @@ export default function ExpenseForm({
     onCancelEdit,
     editingExpense
 }: ExpenseFormProps) {
-    const [title, setTitle] = useState("");
-    const [amount, setAmount] = useState("");
+    const [title, setTitle] = useState(editingExpense?.title ?? "");
+    const [amount, setAmount] = useState(editingExpense?.amount ?? "");
     const [error, setError] = useState("");
-    const [category, setCategory] = useState<ExpenseCategory>("Shopping");
-    useEffect(() => {
-        setError("");
-        if (editingExpense) {
-            setTitle(editingExpense.title);
-            setAmount(String(editingExpense.amount));
-            setCategory(editingExpense.category);
-        } else {
-            setTitle("");
-            setAmount("");
-            setCategory("Shopping");
-        }
-    }, [editingExpense]);
+    const [category, setCategory] = useState<ExpenseCategory>(editingExpense?.category ?? "Shopping");
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();

@@ -82,15 +82,21 @@ function App() {
     <>
       <h2>Expenses({filteredExpenses.length})</h2>
       <h4>Filtered By Category</h4>
-      <CategorySelect value={filteredCategory} onChange={setFilteredCategory} includeAll/>
+      <CategorySelect value={filteredCategory} onChange={setFilteredCategory} includeAll />
 
       <ExpenseList expenses={filteredExpenses} onDelete={handleDelete} onEdit={handleEdit} />
       <h3>Total : {total}</h3>
       <h2>Add Expense</h2>
-      <ExpenseForm onAdd={handleAdd} onUpdate={handleUpdate} onCancelEdit={handleCancelEdit} editingExpense={editingExpense}/>
+      <ExpenseForm
+        key={editingExpense?.id ?? "new"}
+        onAdd={handleAdd}
+        onUpdate={handleUpdate}
+        onCancelEdit={handleCancelEdit}
+        editingExpense={editingExpense}
+      />
 
       <hr />
-      Editing { editingExpense && (editingExpense.title)}
+      Editing {editingExpense && (editingExpense.title)}
     </>
   )
 }
