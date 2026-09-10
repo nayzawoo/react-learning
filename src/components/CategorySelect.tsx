@@ -1,10 +1,16 @@
 import { EXPENSE_CATEGORIES, type ExpenseCategory } from "../types/expense"
 
-type CategorySelectProps = {
-    value: ExpenseCategory | "All";
-    onChange: (category: ExpenseCategory) => void;
-    includeAll?: boolean;
-}
+type CategorySelectProps =
+    | {
+        value: ExpenseCategory | "All";
+        onChange: (category: ExpenseCategory | "All") => void;
+        includeAll: true;
+    }
+    | {
+        value: ExpenseCategory;
+        onChange: (category: ExpenseCategory) => void;
+        includeAll?: false;
+    }
 
 export default function CategorySelect({
     value,

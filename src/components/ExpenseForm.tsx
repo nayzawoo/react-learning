@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import type { Expense, ExpenseCategory } from '../types/expense';
-import { EXPENSE_CATEGORIES } from '../types/expense';
 import CategorySelect from './CategorySelect';
 
 type ExpenseFormProps = {

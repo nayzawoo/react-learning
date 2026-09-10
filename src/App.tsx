@@ -1,6 +1,6 @@
 // import './App.css'
 import { useEffect, useState } from 'react';
-import { EXPENSE_CATEGORIES, type Expense, type ExpenseCategory } from './types/expense';
+import { type Expense, type ExpenseCategory } from './types/expense';
 import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 import CategorySelect from './components/CategorySelect';
