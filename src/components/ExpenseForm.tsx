@@ -16,8 +16,10 @@ export default function ExpenseForm({
 }: ExpenseFormProps) {
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
+    const [error, setError] = useState("");
     const [category, setCategory] = useState<ExpenseCategory>("Shopping");
     useEffect(() => {
+        setError("");
         if (editingExpense) {
             setTitle(editingExpense.title);
             setAmount(String(editingExpense.amount));
@@ -38,12 +40,16 @@ export default function ExpenseForm({
         const numericAmount = Number(amount);
 
         if (trimedTitle === '') {
+            setError("Title is required");
             return;
         }
 
         if (numericAmount <= 0) {
+            setError("Ammount must be greater than 0");
             return;
         }
+
+        setError("");
 
         if (editingExpense) {
             onUpdate({
@@ -65,7 +71,7 @@ export default function ExpenseForm({
         <form
             onSubmit={handleSubmit}
         >
-
+            { error && <p style={{ color: 'red'}}>{error}</p>}
             <p>Title</p>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
 
