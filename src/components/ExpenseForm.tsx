@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Expense, ExpenseCategory } from '../types/expense';
+import { EXPENSE_CATEGORIES } from '../types/expense';
 
 type ExpenseFormProps = {
     onAdd: (title: string, amount: number, category: ExpenseCategory) => void;
@@ -79,8 +80,9 @@ export default function ExpenseForm({
             <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
             <br />
             <select name="cateory" id="category" value={category} onChange={(e) => setCategory(e.target.value as ExpenseCategory)}>
-                <option value="Shopping">Shopping</option>
-                <option value="Food">Food</option>
+                {EXPENSE_CATEGORIES.map((category) => (
+                    <option key={category} value={category}>{category}</option>
+                ))}
             </select>
             <br />
             {editingExpense && (

@@ -1,6 +1,6 @@
 // import './App.css'
 import { useEffect, useState } from 'react';
-import type { Expense, ExpenseCategory } from './types/expense';
+import { EXPENSE_CATEGORIES, type Expense, type ExpenseCategory } from './types/expense';
 import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 
@@ -21,8 +21,8 @@ function App() {
     localStorage.setItem('expenses', JSON.stringify(expenses));
   }, [expenses]);
 
-  const filteredExpenses = filteredCategory == "All" ? expenses : expenses.filter(
-    (expense) => expense.category == filteredCategory
+  const filteredExpenses = filteredCategory === "All" ? expenses : expenses.filter(
+    (expense) => expense.category === filteredCategory
   );
 
   const total = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0);
@@ -83,9 +83,9 @@ function App() {
       <h4>Filtered By Category</h4>
       <select name="category" value={filteredCategory} onChange={(e) => setFilteredCategory(e.target.value as ExpenseCategory | "All")}>
         <option value="All">All</option>
-        <option value="Shopping">Shopping</option>
-        <option value="Food">Food</option>
-        <option value="Bill">Bill</option>
+        {EXPENSE_CATEGORIES.map((category) => (
+          <option key={category} value={category}>{category}</option>
+        ))}
       </select>
 
       <ExpenseList expenses={filteredExpenses} onDelete={handleDelete} onEdit={handleEdit} />
