@@ -1,13 +1,26 @@
 // import './App.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Expense, ExpenseCategory } from './types/expense';
 import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 
 function App() {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [expenses, setExpenses] = useState<Expense[]>(() => {
+    const savedExpenses = localStorage.getItem('expenses');
+    if (savedExpenses) {
+      return JSON.parse(savedExpenses);
+    }
+
+    return [];
+  });
+
   const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
   const [filteredCategory, setFilteredCategory] = useState<ExpenseCategory | "All">("All");
+
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses));
+  }, [expenses]);
+
   const filteredExpenses = filteredCategory == "All" ? expenses : expenses.filter(
     (expense) => expense.category == filteredCategory
   );
@@ -20,15 +33,16 @@ function App() {
   }
 
   const handleDelete = (id: number) => {
-    setExpenses(expenses.filter((expense) => expense.id != id))
+    setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id != id))
   }
 
   const handleUpdate = (updatedExpense: Expense) => {
-    setExpenses(
-      expenses.map((expense) =>
+    setExpenses((prevExpenses) =>
+      prevExpenses.map((expense) =>
         expense.id === updatedExpense.id ? updatedExpense : expense
       )
     );
+    handleCancelEdit();
   }
 
   const handleCancelEdit = () => {
@@ -57,7 +71,10 @@ function App() {
       category,
     };
 
-    setExpenses([...expenses, newExpense]);
+    setExpenses((prevExpenses) => [
+      ...prevExpenses,
+      newExpense,
+    ]);
   }
 
   return (
