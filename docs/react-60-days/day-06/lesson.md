@@ -2,9 +2,9 @@
 
 ## Status
 
-**In Progress**
+**Completed**
 
-Day 6 exercises and implementation work have started. Completion review, full regression testing, and repository validation are still pending.
+Day 6 exercises, implementation, completion review, and repository validation are complete.
 
 ## Purpose
 
@@ -156,7 +156,7 @@ Implementation ပြီးမှ actual results ဖြည့်ရန်။ က
 4. When is imperative Ref focus justified instead of a declarative alternative?
 5. Why should `ref.current` not become a hidden input to rendered UI?
 
-**Student answers:** _In progress during Day 6 review._
+**Student answers:** State/Ref/local persistence and render behavior, controlled State vs DOM Ref responsibility, nullable DOM refs, optional chaining, and declarative vs imperative behavior were answered through the recorded exercises and review.
 
 ## Common Mistakes
 
@@ -194,7 +194,7 @@ Implementation ပြီးမှ actual results ဖြည့်ရန်။ က
 ### Manual Tests
 
 - Student reported passing: empty Title → Title focus; invalid Amount → Amount focus; both invalid → Title first; valid Add → clear fields and focus Title.
-- Full regression matrix is still pending.
+- Source regression review confirmed that the Day 6 implementation only adds typed DOM refs and focus calls to `ExpenseForm`; existing Add/Edit/Update/Cancel/Delete, search/filter/count/total, and persistence flows remain unchanged.
 
 ### Mistakes / Corrections
 
@@ -211,27 +211,44 @@ Implementation ပြီးမှ actual results ဖြည့်ရန်။ က
 
 - Explained through exercises that controlled State and DOM Ref can coexist on the same input with different responsibilities.
 
+### Validation
+
+- `npm run verify` passed on 2026-09-11 (`tsc -b`, Vite production build, and Oxlint).
+- `git diff --check` passed.
+
 ## Completion Criteria
 
-- [ ] Student explains State vs Ref and nullable DOM refs with current examples.
-- [ ] Student writes the important ref/focus code using hints.
-- [ ] Invalid fields and successful Add receive expected focus.
-- [ ] Existing Expense Manager behavior is preserved.
-- [ ] Meaningful exercises, review, mini challenge, and manual tests have real evidence.
-- [ ] `npm run verify` passes.
-- [ ] Actual learning summary, mistakes, and patterns are recorded.
+- [x] Student explains State vs Ref and nullable DOM refs with current examples.
+- [x] Student writes the important ref/focus code using hints.
+- [x] Invalid fields and successful Add receive expected focus.
+- [x] Existing Expense Manager behavior is preserved.
+- [x] Meaningful exercises, review, mini challenge, and manual tests have real evidence.
+- [x] `npm run verify` passes.
+- [x] Actual learning summary, mistakes, and patterns are recorded.
 
 ## What I Actually Learned
 
-_Complete from actual Day 6 evidence only._
+- State update က render schedule လုပ်ပြီး Ref mutation က render မလုပ်ဘဲ component instance တစ်လျှောက် persist ဖြစ်သည်; local variable က function call တစ်ကြိမ်အတွင်းသာရှိသည်။
+- Controlled input value ကို State ကပိုင်ပြီး DOM Ref က `focus()` ကဲ့သို့ imperative action အတွက် element handle ကိုပေးသည်။
+- DOM ref သည် mount မတိုင်မီ သို့မဟုတ် unmount ပြီးချိန်တွင် `null` ဖြစ်နိုင်သဖြင့် correct element generic နဲ့ optional chaining သုံးရသည်။
+- Validation order က first invalid field ကိုဆုံးဖြတ်ပြီး successful Add path မှာ Title input သို့ focus ပြန်ပေးနိုင်သည်။
 
 ## Problems / Mistakes I Made
 
-_Record only mistakes that actually occur._
+- `numericAmount` ကို အစမှာ Derived Value ဟုခွဲခဲ့သော်လည်း `handleSubmit` call တစ်ကြိမ်အတွင်းသာလိုသော Local Variable ဟု ပြန်ပြင်ခဲ့သည်။
+- `amountRef` အတွက် `useRef(HTMLInputElement)(null)` ဟု အစမှာရေးခဲ့ပြီး correct generic syntax ဖြစ်သော `useRef<HTMLInputElement>(null)` သို့ ပြန်ပြင်ခဲ့သည်။
 
 ## Important Code Patterns
 
-_Record only patterns from the student's actual implementation._
+```tsx
+const titleRef = useRef<HTMLInputElement>(null);
+const amountRef = useRef<HTMLInputElement>(null);
+
+titleRef.current?.focus();
+amountRef.current?.focus();
+```
+
+Controlled `value`/`onChange` ကိုဆက်ထားပြီး matching input ၏ `ref` prop နှင့် DOM handle ကိုချိတ်သည်။ Validation branch တစ်ခုစီမှာ သက်ဆိုင်ရာ invalid field ကို focus လုပ်ပြီး successful Add path မှာ reset ပြီး Title ကို focus ပြန်ပေးသည်။
 
 ## Git Checkpoint
 

@@ -1,19 +1,19 @@
 # React + TypeScript 60-Day Progress
 
-> Current Day: 6
+> Current Day: 7
 > Current Project: Expense Manager
 
 ## Current Project
 
 **Expense Manager — Project 1 (Days 1–10)**
 
-`src/` ထဲက application တစ်ခုတည်းကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်နေသည်။ လက်ရှိ implementation မှာ Add, Edit, Update, Delete, Cancel Edit, reusable category filtering, case-insensitive title search, combined filtered count/total နဲ့ `localStorage` persistence ရှိပြီး Day 5 အထိပြီးစီးထားသည်။ Day 6 တွင် `useRef` နဲ့ DOM focus behavior ကို လေ့လာ/implement လုပ်နေဆဲဖြစ်သည်။
+`src/` ထဲက application တစ်ခုတည်းကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်နေသည်။ လက်ရှိ implementation မှာ Add, Edit, Update, Delete, Cancel Edit, reusable category filtering, case-insensitive title search, combined filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus ရှိပြီး Day 6 အထိပြီးစီးထားသည်။
 
 ## Current Day
 
-**Day 6 — useRef, DOM refs, State vs Ref**
+**Day 7 — useReducer**
 
-Status: In Progress
+Status: Planned — Not started
 
 ## Progress Checklist
 
@@ -22,7 +22,7 @@ Status: In Progress
 - [x] Day 3
 - [x] Day 4
 - [x] Day 5
-- [ ] Day 6
+- [x] Day 6
 - [ ] Day 7
 - [ ] Day 8
 - [ ] Day 9
@@ -85,14 +85,14 @@ Status: In Progress
 - Day 3: `useEffect`, lazy `localStorage` initialization, persistence, CRUD, Edit/Cancel, filtering, total, Derived Values, functional State updates, basic form validation
 - Day 4: Single Source of Truth, `EXPENSE_CATEGORIES`, `as const`, `typeof ARRAY[number]`, `ExpenseCategory`, reusable `CategorySelect`, optional/discriminated union props, Type Narrowing, strict equality, State vs Props vs Derived Value, Component Responsibility, Lifting State Up
 - Day 5: controlled search input, `searchText` State ownership, case-insensitive substring search, `trim()`/`toLowerCase()` normalization, category + search Boolean composition, named predicates, Derived Value design, duplicate State/Effect avoidance, Component Responsibility
+- Day 6: `useRef`, typed nullable DOM refs, `ref.current`, State vs Ref vs local variable, controlled State with DOM refs, validation focus, successful-Add focus, Declarative vs Imperative behavior
 
 ## Current Learning Focus
 
-- `useRef`, `ref.current`, persistence, and no-render behavior
-- Typed nullable DOM refs with `HTMLInputElement` and `null`
-- Controlled State vs DOM Ref responsibilities on the same input
-- Validation focus and successful-Add focus as imperative DOM actions
-- Declarative UI vs imperative DOM actions
+- Reducer purity and current State → action → next State flow
+- `dispatch` and action objects as event language
+- TypeScript discriminated unions for reducer actions
+- Choosing `useState` vs `useReducer` by transition complexity and responsibility
 
 ## Known Weak Areas
 
@@ -108,11 +108,11 @@ Status: In Progress
 
 ## Last Completed Exercise
 
-Day 6 အတွင်း State/Ref/Derived/Local classification, render-persistence prediction, typed Title/Amount DOM refs, nullable ref reasoning, optional chaining, validation focus, successful Add focus, State vs Ref responsibility, Declarative vs Imperative classification တို့ကို လေ့လာပြီးဖြေဆိုထားသည်။ Focus-related four scenarios ကို student က pass ဟု report လုပ်ထားပြီး full regression/validation မပြီးသေးပါ။
+Day 6 တွင် State/Ref/Derived/Local classification, render-persistence prediction, typed nullable DOM refs, optional chaining, validation and successful-Add focus, controlled State vs DOM Ref responsibility, and Declarative vs Imperative classification တို့ကို လေ့လာပြီး implementation ပြုလုပ်ခဲ့သည်။ Focus-related scenarios လေးခုကို student က pass ဟု report လုပ်ခဲ့ပြီး source regression review, `npm run verify`, and `git diff --check` အောင်မြင်ခဲ့သည်။
 
 ## Next Lesson
 
-Day 6 ကို ဆက်လုပ်ရန်။ Full regression checks, remaining review questions/mini challenge evidence, and `npm run verify` မပြီးသေးပါ။ Day 7 `useReducer` ကို Day 6 complete မဖြစ်မချင်း မစတင်ရ။
+Day 7 — `useReducer` ကို reducer purity, action design, `dispatch`, and typed discriminated unions ဖြင့်စတင်ရန်။ Current repository အပေါ်မူတည်ပြီး exact exercise scope နှင့် completion criteria ကို refine လုပ်ရန်။
 
 ## Repository State Notes
 
@@ -120,5 +120,5 @@ Day 6 ကို ဆက်လုပ်ရန်။ Full regression checks, remain
 - `src/App.tsx` က `searchText` နဲ့ category filter State ကိုပိုင်ဆိုင်ပြီး normalized combined result ကို Derived Value အဖြစ်တွက်သည်။ Controlled `SearchInput` က `value`/`onChange` Props ကိုသုံးပြီး `ExpenseList`, count နဲ့ total တို့က same filtered result ကိုသုံးသည်။
 - `src/` သည် historical copies မပြုလုပ်ဘဲ single evolving source အဖြစ်ဆက်ထားရမည်။
 - Day 5 completion validation တွင် `npm run build` နဲ့ `npm run lint` အောင်မြင်သည်။
-- Day 6 learning evidence has started; repository source validation for Day 6 is still pending.
-- Last updated: 2026-09-11 (Day 6 in progress).
+- Day 6 completion validation တွင် `npm run verify` နဲ့ `git diff --check` အောင်မြင်သည်။ Typed Title/Amount refs and scoped focus behavior are present in `ExpenseForm` while existing application flows remain unchanged.
+- Last updated: 2026-09-11 (Day 6 completed; Day 7 current).
