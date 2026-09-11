@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import type { Expense, ExpenseCategory } from '../types/expense';
 import CategorySelect from './CategorySelect';
 
@@ -19,6 +19,8 @@ export default function ExpenseForm({
     const [amount, setAmount] = useState(editingExpense?.amount ?? "");
     const [error, setError] = useState("");
     const [category, setCategory] = useState<ExpenseCategory>(editingExpense?.category ?? "Shopping");
+    const titleRef = useRef<HTMLInputElement>(null);
+    const amountRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
@@ -30,11 +32,13 @@ export default function ExpenseForm({
 
         if (trimmedTitle === '') {
             setError("Title is required");
+            titleRef.current?.focus();
             return;
         }
 
         if (numericAmount <= 0) {
             setError("Amount must be greater than 0");
+            amountRef.current?.focus();
             return;
         }
 
@@ -54,6 +58,7 @@ export default function ExpenseForm({
 
         setTitle("");
         setAmount("");
+        titleRef.current?.focus();
     }
 
     return (
@@ -68,6 +73,7 @@ export default function ExpenseForm({
                 <input
                     id="expense-title"
                     type="text"
+                    ref={titleRef}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="e.g. Groceries"
@@ -81,6 +87,7 @@ export default function ExpenseForm({
                     <input
                         id="expense-amount"
                         type="number"
+                        ref={amountRef}
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         placeholder="0.00"
