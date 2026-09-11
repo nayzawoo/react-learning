@@ -6,9 +6,9 @@ A hands-on React + TypeScript learning repository built around one evolving appl
 
 - **Project:** Expense Manager — Project 1, Days 1–10
 - **Current day:** Day 6 of 60 — `useRef`, DOM refs, State vs Ref
-- **Status:** Current / Not started
+- **Status:** In Progress
 - **Completed:** Days 1–5
-- **Implemented:** Add/Edit/Update/Delete, Cancel Edit, category filtering, case-insensitive title search, filtered count/total, and `localStorage` persistence
+- **Implemented:** Add/Edit/Update/Delete, Cancel Edit, category filtering, case-insensitive title search, filtered count/total, and `localStorage` persistence; Day 6 DOM ref/focus work is in progress
 
 [PROGRESS.md](docs/react-60-days/PROGRESS.md) is the source of truth for this summary and is synchronized by the learning protocols whenever the learning state changes materially.
 
@@ -51,7 +51,7 @@ See [ROADMAP.md](docs/react-60-days/ROADMAP.md) for canonical daily topics.
 ## Project progression
 
 | Stage | Project | Curriculum window | Status |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | Project 1 | Expense Manager | Days 1–10 | In progress |
 | Project 2 | Task Manager / Productivity App | Days 20–40 | Planned |
 | Project 3 | Production Capstone | Days 50–60 | Planned |

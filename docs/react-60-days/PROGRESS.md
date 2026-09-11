@@ -7,13 +7,13 @@
 
 **Expense Manager — Project 1 (Days 1–10)**
 
-`src/` ထဲက application တစ်ခုတည်းကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်နေသည်။ လက်ရှိ implementation မှာ Add, Edit, Update, Delete, Cancel Edit, reusable category filtering, case-insensitive title search, combined filtered count/total နဲ့ `localStorage` persistence ရှိပြီး Day 5 အထိပြီးစီးထားသည်။
+`src/` ထဲက application တစ်ခုတည်းကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်နေသည်။ လက်ရှိ implementation မှာ Add, Edit, Update, Delete, Cancel Edit, reusable category filtering, case-insensitive title search, combined filtered count/total နဲ့ `localStorage` persistence ရှိပြီး Day 5 အထိပြီးစီးထားသည်။ Day 6 တွင် `useRef` နဲ့ DOM focus behavior ကို လေ့လာ/implement လုပ်နေဆဲဖြစ်သည်။
 
 ## Current Day
 
 **Day 6 — useRef, DOM refs, State vs Ref**
 
-Status: Current / Not started
+Status: In Progress
 
 ## Progress Checklist
 
@@ -88,27 +88,31 @@ Status: Current / Not started
 
 ## Current Learning Focus
 
-- Day 6 အတွက် `useRef`, DOM refs နဲ့ State vs Ref ကွာခြားချက်ကို ဆက်လေ့လာရန်
-- Day 5 မှ State လိုအပ်သော user-visible query နဲ့ ပြန်တွက်နိုင်သော Derived Value တို့၏ boundary ကို Day 6 Ref mental model နဲ့ချိတ်ဆက်ရန်
+- `useRef`, `ref.current`, persistence, and no-render behavior
+- Typed nullable DOM refs with `HTMLInputElement` and `null`
+- Controlled State vs DOM Ref responsibilities on the same input
+- Validation focus and successful-Add focus as imperative DOM actions
+- Declarative UI vs imperative DOM actions
 
 ## Known Weak Areas
 
-_Day 5 quiz/review ကိုအောင်မြင်ခဲ့ပြီး အတည်ပြုထားသော current weak area မရှိသေးပါ။_
+- `Derived Value` နဲ့ function-scoped `Local Variable` boundary ကို သတိထားရန် (`numericAmount` ကိုအစမှာ Derived Value ဟုခွဲခဲ့ပြီး ပြန်ပြင်ခဲ့သည်)။
+- TypeScript generic syntax for DOM refs ကို `<HTMLInputElement>` ပုံစံနဲ့ရေးရန် (`useRef(HTMLInputElement)(null)` မဟုတ်)။
 
 ## Important Mistakes / Lessons
 
-- Personal mistake အတိအကျကို historical notes မှမရသောကြောင့် မဖန်တီးထားပါ။
-- Repository history က category strings ကို နေရာအများကြီးမှာထပ်ရေးခြင်းမှ `EXPENSE_CATEGORIES` Single Source of Truth သို့ refactor လုပ်ထားကြောင်းပြသည်။
-- Current code က array ပြောင်းလဲမှုများအတွက် functional State updates သုံးထားပြီး filtered list နဲ့ total ကို Derived Values အဖြစ်တွက်ထားသည်။
-- Combined filter manual review တွင် `Shopping` + `"office"` ကို အစမှာ empty result ဟုမှားယူခဲ့သော်လည်း `Office Chair` သည် category နဲ့ search နှစ်ခုစလုံး match ဖြစ်ကြောင်းပြန်စစ်ပြီးပြင်ခဲ့သည်။ Item တစ်ခုစီအတွက် Boolean conditions နှစ်ခုလုံးကိုစစ်ရမည်။
+- `numericAmount` သည် `handleSubmit` call တစ်ကြိမ်အတွင်းသာလိုသောကြောင့် Derived Value မဟုတ်ဘဲ Local Variable ဖြစ်သည်။
+- DOM ref မှာ element type ကို generic အဖြစ် `useRef<HTMLInputElement>(null)` ရေးရပြီး initial `current` သည် `null` ဖြစ်နိုင်သည်။
+- Controlled input မှာ State က rendered value ကိုပိုင်ပြီး Ref က `focus()` လို DOM action အတွက် handle ပေးသည်။
+- `ref.current?.focus()` သည် imperative action ဖြစ်ပြီး Ref mutation/action ကိုယ်တိုင် React render မ schedule လုပ်ပါ။
 
 ## Last Completed Exercise
 
-Day 5 တွင် State/Derived Value classification, search State, controlled `SearchInput`, combined category + title filtering, manual search matrix နဲ့ named Boolean readability refactor ကိုပြီးစီးခဲ့သည်။ Whitespace-only query နဲ့ combined filtering mini challenges ကိုစမ်းသပ်ခဲ့သည်။
+Day 6 အတွင်း State/Ref/Derived/Local classification, render-persistence prediction, typed Title/Amount DOM refs, nullable ref reasoning, optional chaining, validation focus, successful Add focus, State vs Ref responsibility, Declarative vs Imperative classification တို့ကို လေ့လာပြီးဖြေဆိုထားသည်။ Focus-related four scenarios ကို student က pass ဟု report လုပ်ထားပြီး full regression/validation မပြီးသေးပါ။
 
 ## Next Lesson
 
-**Day 6 — useRef, DOM refs, State vs Ref** ကိုဆက်မည်။ Day 6 implementation ကိုမစတင်ရသေးပါ။
+Day 6 ကို ဆက်လုပ်ရန်။ Full regression checks, remaining review questions/mini challenge evidence, and `npm run verify` မပြီးသေးပါ။ Day 7 `useReducer` ကို Day 6 complete မဖြစ်မချင်း မစတင်ရ။
 
 ## Repository State Notes
 
@@ -116,4 +120,5 @@ Day 5 တွင် State/Derived Value classification, search State, controlled 
 - `src/App.tsx` က `searchText` နဲ့ category filter State ကိုပိုင်ဆိုင်ပြီး normalized combined result ကို Derived Value အဖြစ်တွက်သည်။ Controlled `SearchInput` က `value`/`onChange` Props ကိုသုံးပြီး `ExpenseList`, count နဲ့ total တို့က same filtered result ကိုသုံးသည်။
 - `src/` သည် historical copies မပြုလုပ်ဘဲ single evolving source အဖြစ်ဆက်ထားရမည်။
 - Day 5 completion validation တွင် `npm run build` နဲ့ `npm run lint` အောင်မြင်သည်။
-- Last updated: 2026-09-10 (Day 5 completed; Day 6 is current and not started).
+- Day 6 learning evidence has started; repository source validation for Day 6 is still pending.
+- Last updated: 2026-09-11 (Day 6 in progress).
