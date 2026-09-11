@@ -2,9 +2,12 @@
 
 These protocols are the canonical workflow rules. `PROGRESS.md` supplies the current state, `ROADMAP.md` supplies curriculum topics, active lessons hold teaching material and real evidence, and Git supplies commit/tag/push state.
 
+For Day 7 and later, `PRODUCTION-FIRST.md` is the canonical lesson-quality and teaching-depth protocol. It supplements these workflow rules; when preparing, teaching, validating, or completing those lessons, both documents apply.
+
 ## Shared rules
 
 - Detect the active day from `PROGRESS.md`; never hard-code it.
+- For Day 7 and later lesson work, read and follow `PRODUCTION-FIRST.md` before preparing or teaching.
 - Load only the files required by the selected protocol. Never load all lessons automatically.
 - Teach primarily in Burmese with standard English technical terms and use hints before solutions.
 - Do not implement future lessons or invent evidence.
