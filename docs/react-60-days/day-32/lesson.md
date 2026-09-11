@@ -1,4 +1,4 @@
-# Day 32 — Redux Mental Model
+# Day 32 — Zustand
 
 ## Status
 
@@ -8,7 +8,7 @@ _ဒီ day ရောက်ချိန်မှာ current repository, installe
 
 ## Purpose
 
-Redux ရဲ့ predictable State container model ကို library syntax မတိုင်မီ events, reducers နဲ့ one-way data flow အဖြစ်နားလည်ရန်။
+Native React State boundaries ကိုနားလည်ပြီးနောက် Zustand ရဲ့ external store/subscription model ကို justified Shared Client State အတွက်သုံးကာ Context, `useReducer`, Redux Toolkit, and server-State tools နဲ့ tradeoff နှိုင်းရန်။
 
 ## Previous Day Review
 
@@ -16,7 +16,7 @@ Day 31 — State Architecture မှ mental model, implementation result နဲ�
 
 ## Prerequisites
 
-- `useReducer`, immutable updates နဲ့ State Architecture
+- Local/lifted State, Context, `useReducer`, immutable updates နဲ့ State Architecture
 - `PROGRESS.md` ရှိ previous-day completion evidence
 - Lesson မစမီ relevant source files ကို inspect လုပ်ထားခြင်း
 
@@ -29,48 +29,56 @@ Day 31 — State Architecture မှ mental model, implementation result နဲ�
 
 ## Core Concepts
 
-- Store
-- Actions
-- Reducers
-- Dispatch
-- Selectors
-- One-way data flow
-- Redux use-case boundaries
+- Why an external client store exists
+- `create()` with typed State + actions
+- Selectors, subscriptions, `Object.is`, and `useShallow` where relevant
+- `persist` and devtools middleware
+- Store organization and slices tradeoffs
+- Global store vs scoped/provider-created store
+- Vanilla stores and testing
+- Hydration, SSR, and Next.js per-request-store caveats
+- Zustand vs native React/Context/Redux/server-State tools
 
 ## Mental Model
 
-Redux မှာ Components က action dispatch လုပ်တယ်၊ reducer က next store State ထုတ်တယ်၊ UI က selectors ဖြင့်လိုသော data ဖတ်တယ်။ Redux သုံးခြင်းဟာ server cache သို့ local State အားလုံးအတွက် default မဟုတ်ဘူး။
+Zustand store က React Component tree အပြင်ရှိ external observable State ဖြစ်ပြီး Component က selector ဖြင့်လိုသော slice ကို subscribe လုပ်သည်။ Provider boilerplate နည်းခြင်းက State ownership ပျောက်သွားပြီဟုမဆိုလိုပါ။ Module-global store သည် request-global ဖြစ်နိုင်သဖြင့် SSR/Next.js မှာ per-request scoping နဲ့ hydration ကိုစဉ်းစားရမည်။
 
 ## Implementation Tasks
 
-1. Redux data flow ကို framework-independent diagram ရေးရန်
-2. Task Manager ရှိ Redux candidate နဲ့ non-candidate State ခွဲရန်
-3. Action naming ကို event language ဖြင့် design လုပ်ရန်
+1. Lesson-day Zustand stable API, maintenance, compatibility, peer dependencies, bundle/runtime cost, license, and migration guide ကိုစစ်ရန်
+2. Task Manager မှ justified Shared Client State တစ်ခုနှင့် server cache, URL, local form/UI non-candidates ကိုခွဲရန်
+3. Typed State + actions store ကို `create()` ဖြင့်တည်ဆောက်ပြီး Components ကို narrow selectors ဖြင့်ချိတ်ရန်
+4. Selector output identity နဲ့ `useShallow` လို/မလို behavior ဖြင့်ဆုံးဖြတ်ရန်
+5. Persistence လိုလျှင် versioning/runtime validation/hydration tradeoffs ဖြင့် bounded `persist` setup စမ်းရန်
+6. Global vs scoped store, vanilla store testing, devtools, and removal cost ကိုreview လုပ်ရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 
 ## Guided Exercises
 
-- State transition တစ်ခုကို action/reducer/selector သုံးပိုင်းခွဲရေးရန်
-- `useReducer` နဲ့ Redux scope/lifecycle ကွာခြားချက်နှိုင်းရန်
+- Whole-store subscription နဲ့ narrow selector render behavior နှိုင်းရန်
+- Context + `useReducer`, module-global Zustand, and scoped vanilla Zustand store lifecycle နှိုင်းရန်
 
 ## Mini Challenges
 
-Redux မလိုသော scenario တစ်ခုကို proof ဖြင့်ရှင်းပြရန်။
+Zustand မလိုသော scenario တစ်ခုနှင့် module-global store မသင့်သော SSR scenario တစ်ခုကို evidence ဖြင့်ရှင်းပြရန်။
 
 ## Quiz / Review Questions
 
-1. Action က command လား event လား၊ naming က design ကိုဘယ်လိုသက်ရောက်သလဲ။
-2. Selector က State ကိုပြောင်းသလား။
-3. ဒီနေ့ရွေးထားသော design ကို simpler alternative တစ်ခုနဲ့နှိုင်းပြီး tradeoff ကိုရှင်းပြပါ။
+1. Local modal State ကို Zustand ထဲရွှေ့ခြင်းက ဘယ် ownership/maintenance cost တိုးစေမလဲ။
+2. Selector က object အသစ်တစ်ခုအမြဲပြန်ပေးလျှင် Zustand v5 behavior နဲ့ renders အပေါ်ဘာသက်ရောက်နိုင်သလဲ။
+3. `persist` data ကို TypeScript type တစ်ခုရှိရုံဖြင့်ယုံကြည်လို့မရသည့်အကြောင်းနှင့် migration strategy ကိုရှင်းပြပါ။
+4. Next.js server မှ module-global store တစ်ခုကို requests အားလုံး share လုပ်ခြင်းက ဘာကြောင့်အန္တရာယ်ရှိသလဲ။
 
 **Student answers:** _To be completed during Day 32 review._
 
 ## Common Mistakes
 
-- Redux ကို API cache အတွက်အလိုအလျောက်ရွေးခြင်း
-- Actions ကို setters အမည်ပဲပေးခြင်း
-- Store shape ကို UI tree အတိုင်းတည်ဆောက်ခြင်း
+- Local/URL/Form/Server State အားလုံးကို global store ထဲထည့်ခြင်း
+- Whole store ကို subscribe လုပ်ပြီး unnecessary renders ဖြစ်စေခြင်း
+- Object/array selector output identity ကိုမစဉ်းစားခြင်း
+- Persisted JSON ကို runtime validation/migration မရှိဘဲယုံကြည်ခြင်း
+- SSR မှာ module-global singleton ကို request အားလုံး share လုပ်ခြင်း
 
 ## Completion Criteria
 
@@ -100,4 +108,4 @@ Follow the **Complete Current Day** protocol in `../PROTOCOLS.md`.
 
 ## Next Day Context
 
-Day 33 မှာ Redux Toolkit ဖြင့် store နဲ့ slice ကို modern pattern အတိုင်းတည်ဆောက်မည်။
+Day 33 မှာ Redux mental model နဲ့ current recommended Redux Toolkit APIs ကိုပေါင်းသင်ပြီး Zustand နှင့်နှိုင်းမည်။

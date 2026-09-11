@@ -9,6 +9,7 @@
 ```text
 AGENTS.md
   → PROGRESS.md
+  → PRODUCTION-FIRST.md (Day 7+ lesson work)
   → current day-XX/lesson.md
   → relevant src/ files
 ```
@@ -23,6 +24,7 @@ AGENTS.md
 | `PROGRESS.md` | Current Day and current learning state |
 | `ROADMAP.md` | Day 1–60 curriculum topics |
 | `PROTOCOLS.md` | Start, continue, evidence, validation, completion, and Git workflows |
+| `PRODUCTION-FIRST.md` | Day 7+ lesson quality, current-source, dependency, and production teaching rules |
 | `day-XX/lesson.md` | Useful lesson material and actual learning evidence |
 | `src/` | Single evolving application |
 | Git | Commit, tag, and push state |
@@ -32,6 +34,7 @@ Current status ကို [PROGRESS.md](PROGRESS.md) မှဖတ်ရန်။ 
 ## Lesson design
 
 - Current lesson ကို actual repository နဲ့ student progress အပေါ်မူတည်ပြီးမှအသေးစိတ်ပြင်ဆင်ရန်
+- Day 7+ lesson work တွင် `PRODUCTION-FIRST.md` ကိုဖတ်ပြီး teach-first/current-source/dependency-evaluation rules လိုက်နာရန်
 - Future lesson files ကို concise skeleton အဖြစ်ထားရန်
 - Important learning code ကို student က hint-first workflow နဲ့ရေးရန်
 - Meaningful checkpoints ပြီးတိုင်း active lesson ၏ `Session Evidence` ထဲ actual evidence သာမှတ်ရန်

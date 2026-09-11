@@ -42,10 +42,12 @@ Library က form boilerplate ကိုလျှော့ပေးပေမယ့
 
 ## Implementation Tasks
 
-1. Lesson-day package/API version ကိုစစ်ပြီးလိုအပ်မှ dependency ထည့်ရန်
-2. Small form ကို typed `useForm` model ဖြင့်တည်ဆောက်ရန်
-3. Validation errors နဲ့ submit result ကိုရှင်းလင်းစွာပြရန်
-4. Manual controlled form နဲ့ render/complexity tradeoff နှိုင်းရန်
+1. Lesson-day stable API, maintenance, React/TypeScript compatibility, peer dependencies, bundle/runtime behavior, accessibility/testing implications, alternatives, and migration notes ကိုစစ်ရန်
+2. Controlled/uncontrolled native solution limitation က dependency ကိုတကယ် justify လုပ်သလားဆုံးဖြတ်ရန်
+3. Correct manifest category/lockfile diff ဖြင့်လိုအပ်မှ dependency ထည့်ရန်
+4. Small form ကို typed `useForm` model ဖြင့်တည်ဆောက်ရန်
+5. Validation errors နဲ့ submit result ကို accessible ဖြစ်အောင်ပြရန်
+6. Manual form approach နဲ့ render/complexity/removal-cost tradeoff နှိုင်းရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 

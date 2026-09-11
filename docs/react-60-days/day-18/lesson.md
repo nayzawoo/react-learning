@@ -42,10 +42,12 @@ TypeScript types က compile ပြီးနောက် runtime မှာမရ
 
 ## Implementation Tasks
 
-1. Lesson-day Zod/integration APIs ကိုစစ်ရန်
-2. Form input schema တစ်ခုရေးပြီး type derive လုပ်ရန်
-3. Validation issues ကို field errors အဖြစ်ပြရန်
-4. String input မှ domain values သို့ transform boundary စမ်းရန်
+1. Lesson-day stable Zod/integration APIs, maintenance, TypeScript compatibility, bundle cost, alternatives, and migration notes ကိုစစ်ရန်
+2. Runtime validation လိုအပ်ချက်က handwritten guard/native validation ထက် package ကို justify လုပ်သလားဆုံးဖြတ်ရန်
+3. Form input schema တစ်ခုရေးပြီး input/output types derive လုပ်ရန်
+4. Validation issues ကို accessible field errors အဖြစ်ပြရန်
+5. String input မှ domain values သို့ transform boundary စမ်းရန်
+6. Client validation က server authorization/security ကိုမအစားထိုးကြောင်းအတည်ပြုရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 

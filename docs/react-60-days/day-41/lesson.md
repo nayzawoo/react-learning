@@ -12,7 +12,7 @@ Semantic HTML, accessible names, keyboard interaction နဲ့ focus behavior �
 
 ## Previous Day Review
 
-Day 40 — Integration Testing မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
+Day 40 — Integration Testing + MSW မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
 
 ## Prerequisites
 

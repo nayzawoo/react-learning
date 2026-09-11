@@ -12,7 +12,7 @@ Larger Redux State အတွက် selectors, normalized structures, listener/as
 
 ## Previous Day Review
 
-Day 33 — Redux Toolkit မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
+Day 33 — Redux Mental Model + Redux Toolkit မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
 
 ## Prerequisites
 

@@ -31,6 +31,7 @@ Day 18 — Zod + TypeScript Validation မှ mental model, implementation resul
 
 - Service functions
 - Shared API client
+- Native `fetch` vs Axios/current alternatives
 - Environment variables
 - DTO/type boundaries
 - Domain mapping
@@ -43,9 +44,11 @@ Component က URL/header/parsing details မသိသင့်ဘူး။ API b
 ## Implementation Tasks
 
 1. Current network calls ရှိလျှင် responsibilities audit လုပ်ရန်
-2. Base URL နဲ့ request behavior ပါသည့် minimal API client design လုပ်ရန်
-3. Feature service operation များရေးရန်
-4. DTO → domain mapping နဲ့ normalized error boundary တည်ဆောက်ရန်
+2. Native `fetch` wrapper က requirements ဖြည့်နိုင်/မနိုင် စစ်ရန်
+3. Axios/current alternative ကို interceptors, cancellation, adapters, bundle/runtime, SSR, testing, security, and migration cost ဖြင့်လိုမှသာ evaluate လုပ်ရန်
+4. Base URL နဲ့ request behavior ပါသည့် minimal API client design လုပ်ရန်
+5. Feature service operation များရေးရန်
+6. DTO → domain mapping နဲ့ normalized error boundary တည်ဆောက်ရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 

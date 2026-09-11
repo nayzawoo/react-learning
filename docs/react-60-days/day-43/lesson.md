@@ -1,4 +1,4 @@
-# Day 43 — Reusable UI / Design System Architecture
+# Day 43 — Reusable UI, Headless Components & Data-Heavy UI
 
 ## Status
 
@@ -8,11 +8,11 @@ _ဒီ day ရောက်ချိန်မှာ current repository, installe
 
 ## Purpose
 
-Visual consistency နဲ့ accessible behavior ကို shared UI primitives ထဲထားပြီး flexible သော်လည်း controlled Component APIs တည်ဆောက်ရန်။
+Visual consistency နဲ့ accessible behavior ကို shared UI primitives ထဲထားပြီး native UI, headless libraries, source-owned component ecosystems, icons, and data-table engines ကို need-based နှိုင်းကာ flexible သော်လည်း controlled Component APIs တည်ဆောက်ရန်။
 
 ## Previous Day Review
 
-Day 42 — Responsive UI Architecture မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
+Day 42 — Responsive UI Architecture + CSS Strategy မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
 
 ## Prerequisites
 
@@ -37,6 +37,11 @@ Day 42 — Responsive UI Architecture မှ mental model, implementation result
 - Variants and composition
 - Component APIs
 - Design tokens အခြေခံ
+- Native elements vs headless primitives
+- shadcn/ui ecosystem vs Base UI, Radix, React Aria, and current alternatives
+- Source-owned code vs package-owned APIs and migration cost
+- Icon-library accessibility and bundle imports
+- Semantic tables vs TanStack Table for justified data-grid behavior
 
 ## Mental Model
 
@@ -44,10 +49,13 @@ Design System Component က style wrapper သာမဟုတ်ဘဲ semantics,
 
 ## Implementation Tasks
 
-1. Repeated UI patterns ကို evidence ဖြင့်inventory လုပ်ရန်
-2. Primitive တစ်ခုကို minimal typed variants နဲ့တည်ဆောက်ရန်
-3. Accessibility နဲ့ responsive behavior ကို API ထဲထည့်စဉ်းစားရန်
-4. Existing screens တွင် small adoption လုပ်ပြီး duplication လျှော့မလျှော့စစ်ရန်
+1. Current UI repetitions and difficult interactive widgets ကို evidence ဖြင့်inventory လုပ်ရန်
+2. Native implementation လုံလောက်သည့် components နဲ့ headless primitive လိုသည့် components ခွဲရန်
+3. Lesson-day shadcn/Base UI/Radix/React Aria alternatives ကို accessibility, maintenance, ownership, bundle, SSR, testing, and migration cost ဖြင့်နှိုင်းရန်
+4. Justified subset အတွက် typed Props, composition, tokens, and variants design လုပ်ရန်
+5. Icon လိုအပ်လျှင် Lucide/current alternative ကို import granularity, accessible naming, and replacement cost ဖြင့်အကဲဖြတ်ရန်
+6. Real sorting/filtering/pagination use case ရှိမှ TanStack Table/current alternative ကို semantic markup and controlled State boundaries ဖြင့်စမ်းရန်
+7. Keyboard, focus, screen-reader semantics, hydration, and behavior tests စစ်ရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 
@@ -62,9 +70,10 @@ Boolean Props အများကြီးမသုံးဘဲ invalid visual/be
 
 ## Quiz / Review Questions
 
-1. Reusable Component နဲ့ business-specific Component ဘယ်လိုခွဲမလဲ။
-2. Variant API တိုးလွန်းခြင်းက maintenance ကိုဘယ်လိုထိခိုက်သလဲ။
-3. ဒီနေ့ရွေးထားသော design ကို simpler alternative တစ်ခုနဲ့နှိုင်းပြီး tradeoff ကိုရှင်းပြပါ။
+1. Native `<button>` ထက် headless primitive ကိုရွေးရန် ဘယ် interaction/accessibility complexity က justified ဖြစ်စေမလဲ။
+2. shadcn-style source ownership က package upgrade နှင့် security fixes အပေါ် ဘာ tradeoff ရှိသလဲ။
+3. TanStack Table က headless ဖြစ်ခြင်းကြောင့် accessibility responsibility ဘယ်သူ့ဆီကျန်သလဲ။
+4. UI foundation ပြောင်းရန်လိုလာပါက selected abstraction ရဲ့ removal/migration cost ဘယ်လောက်ရှိမလဲ။
 
 **Student answers:** _To be completed during Day 43 review._
 

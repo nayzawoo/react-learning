@@ -100,4 +100,4 @@ Follow the **Complete Current Day** protocol in `../PROTOCOLS.md`.
 
 ## Next Day Context
 
-Day 40 မှာ routing, API/cache နဲ့ UI boundaries ကိုပေါင်းထားသော Integration Testing လုပ်မည်။
+Day 40 မှာ routing, API/cache နဲ့ UI boundaries ကို MSW-backed network layer ဖြင့်ပေါင်းစမ်းမည်။

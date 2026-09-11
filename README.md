@@ -18,6 +18,7 @@ A hands-on React + TypeScript learning repository built around one evolving appl
 
 - [Progress tracker](docs/react-60-days/PROGRESS.md)
 - [Curriculum roadmap](docs/react-60-days/ROADMAP.md)
+- [Production-first teaching protocol](docs/react-60-days/PRODUCTION-FIRST.md)
 - [Current Day 7 lesson](docs/react-60-days/day-07/lesson.md)
 - [Agent learning protocols](docs/react-60-days/PROTOCOLS.md)
 
@@ -86,6 +87,7 @@ npm run dev
 │   ├── PROGRESS.md                   # Current learning state
 │   ├── ROADMAP.md                    # Canonical curriculum
 │   ├── PROTOCOLS.md                  # Agent workflow behavior
+│   ├── PRODUCTION-FIRST.md            # Day 7+ production teaching rules
 │   └── day-XX/lesson.md              # Lesson content and real evidence
 ├── AGENTS.md                         # Concise context router and essential rules
 └── package.json                      # Scripts and dependencies

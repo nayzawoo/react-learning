@@ -43,10 +43,11 @@ Test က implementation ကိုအတည်ပြုတာမဟုတ်ဘ�
 
 ## Implementation Tasks
 
-1. Lesson-day Vitest/Vite compatibility ကိုစစ်ပြီး setup လုပ်ရန်
-2. Pure domain/reducer function တစ်ခုအတွက် tests ရေးရန်
-3. Success, edge နဲ့ failure cases ခွဲရန်
-4. Test script နဲ့ repeatable run အတည်ပြုရန်
+1. Lesson-day Vitest stable API, Vite/Node/TypeScript compatibility, maintenance, dependency cost, environment choices, and migration notes ကိုစစ်ရန်
+2. Vitest ကို `devDependency` အဖြစ်ထည့်ပြီး manifest/lockfile/scripts diff ကိုနားလည်ရန်
+3. Pure domain/reducer function တစ်ခုအတွက် tests ရေးရန်
+4. Success, edge နဲ့ failure cases ခွဲရန်
+5. Watch vs CI run, isolation, and repeatable test script အတည်ပြုရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 

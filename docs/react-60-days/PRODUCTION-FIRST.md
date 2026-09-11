@@ -128,15 +128,102 @@ Use the repository's TypeScript version as the compatibility baseline. Explain d
 
 When relevant, teach the repository's Vite dev server behavior, production builds, HMR, bundling, code splitting, tree shaking, environment variables, source maps, lazy loading, dynamic imports, asset handling, linting, type checking, test tooling, dependency management, and browser compatibility. React should not be taught as isolated component syntax.
 
-## 8. Professional Tips
+## 8. Third-Party Packages & Library Strategy
+
+Teach a significant library through this progression:
+
+```text
+Underlying React / JavaScript / browser concept
+→ real production problem
+→ minimal native solution where educationally useful
+→ limitations of the simple solution
+→ appropriate production library
+→ integration
+→ tradeoffs
+→ alternatives
+→ maintenance/upgrades
+```
+
+Do not teach packages as magic abstractions or permanent default choices. The student must first understand the fundamental problem that the abstraction addresses. Prefer native React, JavaScript, CSS, HTML, and browser/platform APIs when they are simpler and sufficient.
+
+For every major dependency, explain:
+
+- Why it exists and which concrete problem it solves.
+- What it does not solve, when to use it, and when not to use it.
+- Its current stable API and TypeScript integration.
+- Common production patterns, mistakes, caveats, pros, cons, and alternatives.
+- Bundle/runtime and tree-shaking implications where relevant.
+- Accessibility implications where relevant.
+- SSR, hydration, React Server Component, and Next.js implications where relevant.
+- Testing implications and practical debugging workflow.
+- Legacy/deprecated APIs and migration considerations.
+- How difficult replacement or removal would be, including how much application code depends on its API.
+
+Before recommending or installing a significant package, verify:
+
+- Current official documentation and stable release/API.
+- Compatibility with the repository's React, TypeScript, Node, Vite, or framework versions.
+- Active maintenance, release history, and ecosystem maturity.
+- Required and optional peer dependencies.
+- Built-in TypeScript types or the quality/maintenance of external typings.
+- Bundle/runtime cost, import granularity, and tree shaking.
+- Security history, install scripts, transitive dependency surface, provenance, and supply-chain risk.
+- License compatibility when relevant.
+- Migration guides, breaking changes, and realistic alternatives.
+
+Popularity alone is not justification. Record the decision and rejected simpler alternatives when a dependency materially shapes architecture.
+
+## 9. Practical Dependency Management
+
+Teach npm and package management progressively when libraries enter the project rather than isolating it as detached theory. The curriculum must cover:
+
+- `package.json` as the declared dependency and script contract.
+- `package-lock.json` as the exact resolved tree for reproducible installs; review and commit its intentional changes with the manifest.
+- `dependencies`, `devDependencies`, and `peerDependencies`, including why runtime packages and build/test tools belong in different sections.
+- Direct versus transitive dependencies and how to inspect why a package is installed.
+- Semantic versioning and the practical meaning of `^`, `~`, and exact versions, including pre-1.0 caution.
+- `npm install`, `npm uninstall`, `npm ci`, `npm outdated`, and deliberate upgrade workflows.
+- Breaking changes, release notes, migration guides, compatibility checks, and rollback plans.
+- Dependency auditing and security triage without blindly applying forced upgrades.
+- Lockfile reproducibility across local development, CI, and deployment.
+
+Every significant install should have an explicit reason, correct dependency category, inspected manifest/lockfile diff, and validation proportional to risk. Never edit only `package.json` while ignoring a required lockfile update. Never run a broad upgrade simply to make `npm outdated` empty.
+
+## 10. State Categories and Decision Boundaries
+
+Future lessons must distinguish these categories before selecting a tool:
+
+| Category | Typical example | Likely owner/tool |
+| --- | --- | --- |
+| Local UI State | Modal open, selected tab | Colocated `useState` or `useReducer` |
+| Shared Client State | Workflow draft, preferences | Lifted State, Context, Zustand, or Redux Toolkit according to scope/complexity |
+| Server State | API tasks, cache, freshness | TanStack Query or RTK Query when justified |
+| URL State | Search, filters, pagination, selected resource | Router params/search params |
+| Form State | Values, touched/dirty/errors | Controlled/uncontrolled React first; React Hook Form for justified complexity |
+| Persisted State | Durable preferences or drafts | Storage/database boundary plus validation, migration, and hydration strategy |
+| Derived State | Filtered list, totals, permissions computed from sources | Calculate from existing sources; do not duplicate |
+
+Decision order:
+
+```text
+Can it be derived?
+→ Who owns the source of truth?
+→ What lifetime and sharing scope does it need?
+→ Is it local, URL-owned, form-owned, persisted, or server-owned?
+→ What is the smallest tool that preserves correctness?
+```
+
+Do not place server caches, URL parameters, form internals, and all shared values into a generic global store. Choosing the correct State category matters more than memorizing a library API.
+
+## 11. Professional Tips
 
 Include relevant techniques such as React DevTools, browser DevTools, TypeScript editor inspection, effective naming, extracting predicates, component responsibility, avoiding premature abstraction and unnecessary Effects, simplifying State, reading compiler/linter errors, useful editor workflows, and reducing unnecessary renders. Tips must improve production work or understanding rather than add trivia.
 
-## 9. Current Project First
+## 12. Current Project First
 
 Use the Expense Manager as the primary learning laboratory. Before creating an isolated demo, ask whether the concept fits naturally in the project. Use additional examples where the project cannot naturally teach an important use case, but do not distort the application to force every API into it.
 
-## 10. Production Context Beyond the Project
+## 13. Production Context Beyond the Project
 
 For each major topic, briefly show how the knowledge transfers to larger systems. For example:
 
@@ -146,7 +233,7 @@ Admin dashboard: useReducer → complex filter or workflow State
 Checkout flow: useReducer → multi-step transactional State
 ```
 
-## 11. Avoid Premature Completion
+## 14. Avoid Premature Completion
 
 Do not complete a lesson merely because a few quizzes were answered, one simple example works, or syntax was copied. Before completion, confirm that:
 
@@ -158,7 +245,7 @@ Do not complete a lesson merely because a few quizzes were answered, one simple 
 
 If an important surface area is missing, teach it before completion.
 
-## 12. Quiz Policy
+## 15. Quiz Policy
 
 Basic quizzes are secondary. Prefer two to five reasoning questions after teaching and implementation, such as:
 
@@ -169,14 +256,14 @@ Basic quizzes are secondary. Prefer two to five reasoning questions after teachi
 - How would this behave with rapid input?
 - What changes if the component remounts?
 
-## 13. Sources / Modern Notes
+## 16. Sources / Modern Notes
 
 For substantial lessons, maintain a concise `Sources / Modern Notes` section in `lesson.md` when useful. Record official documentation, version-dependent notes, and deprecated or newer APIs discussed. Summarize and link to canonical sources; do not copy large documentation sections.
 
-## 14. Teaching Language
+## 17. Teaching Language
 
 Teach primarily in Burmese and retain standard English terminology such as State, Ref, render, commit, Effect, reducer, dispatch, mutation, controlled component, reconciliation, and batching. Explain difficult English terms in Burmese rather than translating technical vocabulary inconsistently.
 
-## 15. Lesson Quality Rule
+## 18. Lesson Quality Rule
 
 Depth is more important than racing through the schedule. A day may take longer when the topic requires it. Do not skip production knowledge to keep a daily cadence.

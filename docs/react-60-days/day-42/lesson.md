@@ -1,4 +1,4 @@
-# Day 42 — Responsive UI Architecture
+# Day 42 — Responsive UI Architecture + CSS Strategy
 
 ## Status
 
@@ -35,6 +35,8 @@ Day 41 — Accessibility မှ mental model, implementation result နဲ့ �
 - Content-driven breakpoints
 - Responsive tables/forms/navigation
 - Touch target and readability
+- Existing CSS vs CSS Modules vs Tailwind CSS decision boundary
+- Build, token, readability, migration, and removal tradeoffs
 
 ## Mental Model
 
@@ -46,6 +48,7 @@ Responsive design က screen widths စာရင်းကိုလိုက်�
 2. Fixed widths/overflow နဲ့ cramped controls ရှာရန်
 3. Mobile-first layout rules နဲ့ content-driven breakpoint များထည့်ရန်
 4. Keyboard/zoom/touch behavior မပျက်ကြောင်းစစ်ရန်
+5. Existing CSS လုံလောက်/မလုံလောက် စစ်ပြီး Tailwind/current alternative ကို real team/project need ရှိမှ dependency checklist ဖြင့် evaluate လုပ်ရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 
@@ -100,4 +103,4 @@ Follow the **Complete Current Day** protocol in `../PROTOCOLS.md`.
 
 ## Next Day Context
 
-Day 43 မှာ shared Button, Input, Modal, Card, Table APIs ဖြင့် Design System Architecture စတင်မည်။
+Day 43 မှာ reusable UI Components, accessible headless primitives, and data-heavy UI architecture ကိုလေ့လာမည်။

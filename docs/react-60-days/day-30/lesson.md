@@ -35,6 +35,8 @@ Day 29 — Lazy Loading + Suspense မှ mental model, implementation result �
 - Authentication/authorization UX
 - Failure and loading states
 - Build/lint checkpoint
+- Dependency manifest/lockfile health
+- Reproducible `npm ci`, outdated packages, and security triage
 
 ## Mental Model
 
@@ -46,6 +48,8 @@ Checkpoint က feature count မဟုတ်ဘဲ core user journeys ကို 
 2. Auth, protected navigation နဲ့ 401/403/422 behaviors စစ်ရန်
 3. Cache invalidation, query states နဲ့ lazy routes regression test လုပ်ရန်
 4. Scope မတိုးဘဲ blocking issues များပြင်ရန်
+5. Manifest/lockfile diff, direct/transitive dependencies, `npm ci`, and production build reproducibility စစ်ရန်
+6. `npm outdated`, release/migration notes, and security audit findings ကို risk အလိုက် triage လုပ်ပြီး forced/bulk upgrade မလုပ်ရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 

@@ -1,4 +1,4 @@
-# Day 40 — Integration Testing
+# Day 40 — Integration Testing + MSW
 
 ## Status
 
@@ -8,7 +8,7 @@ _ဒီ day ရောက်ချိန်မှာ current repository, installe
 
 ## Purpose
 
-Components, routing, forms နဲ့ data layer တို့ပေါင်းအလုပ်လုပ်သော critical user journeys ကို realistic boundaries ဖြင့်စမ်းရန်။
+Components, routing, forms နဲ့ data layer တို့ပေါင်းအလုပ်လုပ်သော critical user journeys ကို realistic HTTP boundary နှင့် current MSW APIs ဖြင့်စမ်းရန်။
 
 ## Previous Day Review
 
@@ -32,6 +32,10 @@ Day 39 — Forms & Interaction Testing မှ mental model, implementation resul
 - Integration test scope
 - Test providers/router setup
 - Network boundary mocking
+- Native stubs vs MSW decision boundary
+- MSW `http` handlers and `HttpResponse`
+- Node test server vs browser Service Worker
+- Handler reuse, overrides, reset, and contract drift
 - Critical user journeys
 - Success/failure paths
 - Deterministic test data
@@ -42,10 +46,12 @@ Integration test က units အားလုံးကို real production system
 
 ## Implementation Tasks
 
-1. Reusable test render/providers setup တည်ဆောက်ရန်
-2. Task create သို့ edit critical flow တစ်ခုကို router/query/form ဖြင့်စမ်းရန်
-3. Network success နဲ့ server failure response နှစ်မျိုးစမ်းရန်
-4. Test isolation နဲ့ cache reset စစ်ရန်
+1. Lesson-day MSW stable API, Vitest/TypeScript compatibility, maintenance, dependency cost, and v1→v2 migration notes ကိုစစ်ရန်
+2. Hand-written fetch mock limitation နှင့် MSW network interception tradeoff ကိုနှိုင်းရန်
+3. Reusable test render/providers and MSW Node server setup တည်ဆောက်ရန်
+4. Task create သို့ edit critical flow တစ်ခုကို router/query/form/HTTP handler ဖြင့်စမ်းရန်
+5. Network success, validation, delay, and server failure scenarios စမ်းရန်
+6. Handler/cache reset, unhandled requests, and test isolation စစ်ရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 
@@ -60,9 +66,10 @@ Auth → protected route → data load → mutation flow တစ်ခုကိ�
 
 ## Quiz / Review Questions
 
-1. Integration test မှာ ဘာကို real ထားပြီး ဘာကိုmock လုပ်သင့်သလဲ။
-2. Query cache ကို tests ကြားမရှင်းလျှင် ဘာ flakiness ဖြစ်နိုင်သလဲ။
-3. ဒီနေ့ရွေးထားသော design ကို simpler alternative တစ်ခုနဲ့နှိုင်းပြီး tradeoff ကိုရှင်းပြပါ။
+1. MSW က `fetch` implementation ကိုmock လုပ်ခြင်းထက် production request path နဲ့ဘယ်လိုပိုနီးသလဲ၊ ဘာကိုတော့မစမ်းနိုင်သေးသလဲ။
+2. Query cache, handlers, and generated data ကို tests ကြားမရှင်းလျှင် ဘာ flakiness ဖြစ်နိုင်သလဲ။
+3. One-off pure function test အတွက် MSW မသုံးသင့်သည့်အကြောင်းကဘာလဲ။
+4. Mock handlers နဲ့ real backend contract drift ကိုဘယ်လိုလျှော့မလဲ။
 
 **Student answers:** _To be completed during Day 40 review._
 

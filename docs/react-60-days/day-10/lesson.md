@@ -35,6 +35,8 @@ Day 09 — Custom Hooks မှ mental model, implementation result နဲ့ မ
 - Component/Hook responsibility
 - TypeScript contract quality
 - Regression checks နဲ့ refactoring discipline
+- `package.json`, scripts, manifest vs lockfile, and dependency categories
+- Direct vs transitive dependency inventory
 
 ## Mental Model
 
@@ -46,6 +48,8 @@ Refactor ဆိုတာ behavior အသစ်ထည့်ခြင်းမဟ�
 2. Duplicate State, overly broad Props နဲ့ unclear responsibilities ရှာရန်
 3. Small, evidence-backed refactors များသာလုပ်ရန်
 4. Core Add/Edit/Delete/Filter/Search/Persistence flows regression test လုပ်ရန်
+5. `dependencies`, `devDependencies`, scripts, and `package-lock.json` responsibilities ကို current packages ဖြင့်ရှင်းပြရန်
+6. Phase 1 အတွက် new library မလိုသေးသည့် reason ကို fundamentals-first evidence ဖြင့်ရေးရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 

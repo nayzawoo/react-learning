@@ -12,7 +12,7 @@ Happy path အပြင် loading, empty, error, retry နဲ့ disabled state
 
 ## Previous Day Review
 
-Day 43 — Reusable UI / Design System Architecture မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
+Day 43 — Reusable UI, Headless Components & Data-Heavy UI မှ mental model, implementation result နဲ့ မရှင်းသေးသောအချက်များကို review လုပ်ရန်။ Previous lesson file ကို လိုအပ်မှသာဖတ်ရန်။
 
 ## Prerequisites
 
@@ -36,6 +36,8 @@ Day 43 — Reusable UI / Design System Architecture မှ mental model, impleme
 - Retry
 - Disabled/pending states
 - Background refresh feedback
+- Toast/notification strategy and live-region accessibility
+- Platform date/time APIs vs library boundary when needed
 
 ## Mental Model
 
@@ -47,6 +49,8 @@ Failure/loading state တစ်ခုစီမှာ user က “ဘာဖြစ
 2. Loading vs empty vs error conditions ကိုmutually clear ဖြစ်အောင်ပြရန်
 3. Retry နဲ့ disabled/pending actions ထည့်ရန်
 4. Stale/cached content ကိုbackground status နဲ့မှန်ကန်စွာပြရန်
+5. Persistent inline error vs toast ကို actionability/accessibility အရရွေးရန်; library ကို native local pattern မလုံလောက်မှသာ evaluate လုပ်ရန်
+6. Date/time requirement ရှိလျှင် platform `Intl`/`Date` နဲ့ timezone/arithmetic library tradeoff ကိုစစ်ရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 

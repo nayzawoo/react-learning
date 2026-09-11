@@ -8,7 +8,7 @@ _ဒီ day ရောက်ချိန်မှာ current repository, installe
 
 ## Purpose
 
-State တစ်ခုချင်း၏ owner, lifetime, scope နဲ့ update mechanism ကိုစနစ်တကျသတ်မှတ်ပြီး duplication နဲ့ accidental coupling လျှော့ရန်။
+Local UI, Shared Client, Server, URL, Form, Persisted, and Derived State တစ်ခုချင်း၏ owner, lifetime, scope နဲ့ update mechanism ကိုစနစ်တကျသတ်မှတ်ပြီး duplication နဲ့ accidental coupling လျှော့ရန်။
 
 ## Previous Day Review
 
@@ -30,11 +30,12 @@ Day 30 — Checkpoint #2 — Task Manager v1 မှ mental model, implementation
 ## Core Concepts
 
 - State ownership နဲ့ colocation
-- State lifetime/scope
+- Local UI State and Shared Client State
+- Server State and cache ownership
+- URL State and Form State
+- Persisted State and hydration/migration boundary
 - Derived State
-- URL State
-- Server cache State
-- State boundaries နဲ့ data flow
+- State lifetime/scope, boundaries နဲ့ data flow
 
 ## Mental Model
 
@@ -42,9 +43,10 @@ State ကို “ဘယ် tool ထဲထားမလဲ” မေးခွန
 
 ## Implementation Tasks
 
-1. Task Manager State inventory ရေးရန်
-2. Owner/scope/lifetime/source of truth columns ဖြင့် audit လုပ်ရန်
-3. Duplicate/over-global State ကိုရှာပြီး small correction စီစဉ်ရန်
+1. Task Manager State inventory ကို category ခုနစ်မျိုးဖြင့်ရေးရန်
+2. Owner/scope/lifetime/source of truth/freshness columns ဖြင့် audit လုပ်ရန်
+3. Duplicate/over-global State နဲ့ server/URL/form State ကိုမှားယွင်းကူးထားခြင်းများရှာရန်
+4. Available mechanisms ထဲမှ smallest correct owner ကိုရွေးရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 
@@ -59,9 +61,9 @@ Global store မသုံးဘဲရနိုင်သော State တစ်ခ
 
 ## Quiz / Review Questions
 
-1. State colocation က maintenance ကိုဘယ်လိုကူညီသလဲ။
-2. Shared ဖြစ်တိုင်း global store ထဲထားရန်မလိုသည့်အကြောင်းကဘာလဲ။
-3. ဒီနေ့ရွေးထားသော design ကို simpler alternative တစ်ခုနဲ့နှိုင်းပြီး tradeoff ကိုရှင်းပြပါ။
+1. Search filter ကို URL State အဖြစ်ထားခြင်းနှင့် global store ထဲထားခြင်း၏ sharing/back-button tradeoff ကဘာလဲ။
+2. API task list ကို Shared Client State အဖြစ်ထပ်သိမ်းလျှင် source-of-truth နဲ့ freshness bugs ဘာတွေဖြစ်နိုင်သလဲ။
+3. Persisted State က runtime validation, versioning, and hydration strategy ဘာကြောင့်လိုသလဲ။
 
 **Student answers:** _To be completed during Day 31 review._
 
@@ -99,4 +101,4 @@ Follow the **Complete Current Day** protocol in `../PROTOCOLS.md`.
 
 ## Next Day Context
 
-Day 32 မှာ Redux ရဲ့ store/action/reducer/dispatch mental model ကိုလေ့လာမည်။
+Day 32 မှာ Zustand ကို small external Client State store အဖြစ်လေ့လာပြီး native React boundaries နဲ့နှိုင်းမည်။

@@ -1,4 +1,4 @@
-# Day 14 — React Router Fundamentals
+# Day 14 — React Router Fundamentals + Dependency Evaluation
 
 ## Status
 
@@ -34,6 +34,8 @@ Day 13 — Effects and Network Correctness မှ mental model, implementation r
 - `Link` / `NavLink` navigation
 - Programmatic navigation အခြေခံ
 - URL as application state
+- Declarative/Data/Framework mode decision at lesson time
+- Runtime dependency, peer compatibility, semver, and lockfile changes
 
 ## Mental Model
 
@@ -41,10 +43,11 @@ Route က “ဘယ် Component ပြမလဲ” ဆိုသည့် condit
 
 ## Implementation Tasks
 
-1. Lesson-day installed React Router version ကိုစစ်ရန်
-2. Task/Expense views အတွက် basic routes စီစဉ်ရန်
-3. Navigation links နဲ့ route rendering တည်ဆောက်ရန်
-4. Refresh/back/forward behavior စစ်ရန်
+1. Lesson-day stable React Router modes/APIs, maintenance, React/TypeScript compatibility, peer dependencies, bundle cost, and migration notes ကိုစစ်ရန်
+2. `dependencies` vs `devDependencies`, `^`/`~`/exact ranges, package/lockfile diff, and uninstall rollback ကို practical install နဲ့လေ့လာရန်
+3. Project need အတွက် router mode ကိုရွေးပြီး non-choice reasons ရေးရန်
+4. Task/Expense views အတွက် basic routes နဲ့ accessible navigation တည်ဆောက်ရန်
+5. Refresh/back/forward/direct URL behavior စစ်ရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 

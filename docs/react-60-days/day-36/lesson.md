@@ -29,13 +29,13 @@ Day 35 — RTK Query vs TanStack Query မှ mental model, implementation resul
 
 ## Core Concepts
 
-- Local State
-- Lifted State
-- Context
-- `useReducer`
+- Local State and lifted State
+- Context + `useReducer`
+- Zustand
 - Redux Toolkit
-- Server State tools
-- Decision criteria and tradeoffs
+- TanStack Query and RTK Query
+- URL, Form, Persisted, and Derived State boundaries
+- Decision criteria, dependency cost, and migration/removal tradeoffs
 
 ## Mental Model
 
@@ -43,9 +43,11 @@ State management က library contest မဟုတ်ဘူး။ Ownership, cons
 
 ## Implementation Tasks
 
-1. Task Manager State inventory ကို decision matrix ဖြင့်ပြန်ခွဲရန်
-2. Over-global သို့ duplicated State ရှိမရှိစစ်ရန်
-3. ရွေးချယ်မှုတစ်ခုစီအတွက် reason နဲ့ exit condition ရေးရန်
+1. Task Manager State inventory ကို category ခွဲပြီး decision matrix ဖြင့်ပြန်စစ်ရန်
+2. Ownership, scope, lifetime, transition complexity, shareability, persistence, and server synchronization အရဆုံးဖြတ်ရန်
+3. `useState`, `useReducer`, Context, Zustand, Redux Toolkit, TanStack Query, and RTK Query alternatives/costs နှိုင်းရန်
+4. Over-global or duplicated State တစ်ခုကို simpler authoritative boundary သို့ပြန်ထားရန်
+5. ရွေးချယ်မှုတစ်ခုစီအတွက် reason, dependency cost, and exit/migration condition ရေးရန်
 
 Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned implementation ကို မလုပ်ရသေးပါ။
 
@@ -60,9 +62,10 @@ State တစ်ခု၏ requirements တိုးလာချိန် ဘယ�
 
 ## Quiz / Review Questions
 
-1. Context နဲ့ Redux ကိုအစားထိုးတူညီသော tools လို့ယူနိုင်သလား။
-2. Smallest sufficient tool ဆိုတာဘာကြောင့် production-friendly ဖြစ်နိုင်သလဲ။
-3. ဒီနေ့ရွေးထားသော design ကို simpler alternative တစ်ခုနဲ့နှိုင်းပြီး tradeoff ကိုရှင်းပြပါ။
+1. Context, Zustand, and Redux Toolkit တို့၏ propagation, store, and convention responsibilities ဘယ်လိုကွာသလဲ။
+2. Server State ကို client store ထဲထပ်ကူးလျှင် ownership/freshness ဘာပြဿနာဖြစ်နိုင်သလဲ။
+3. Smallest sufficient tool နဲ့ long-term team convention ကြားဘယ်လိုညှိမလဲ။
+4. Tool တစ်ခုရွေးရာမှာ exit/migration cost ကိုအစကတည်းကဘာကြောင့်ရေးသင့်သလဲ။
 
 **Student answers:** _To be completed during Day 36 review._
 
@@ -100,4 +103,4 @@ Follow the **Complete Current Day** protocol in `../PROTOCOLS.md`.
 
 ## Next Day Context
 
-Day 37 မှာ Vitest ဖြင့် automated testing fundamentals စတင်မည်။
+Day 37 မှာ Vitest dependency ကို professional evaluation/install workflow ဖြင့်ထည့်ပြီး automated testing fundamentals စတင်မည်။
