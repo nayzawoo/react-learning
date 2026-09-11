@@ -2,9 +2,9 @@
 
 ## Status
 
-**Planned — Not started**
+**In Progress**
 
-Day 6 implementation, exercises, review, tests, and student understanding have not started.
+Day 6 exercises and implementation work have started. Completion review, full regression testing, and repository validation are still pending.
 
 ## Purpose
 
@@ -140,10 +140,10 @@ Implementation ပြီးမှ actual results ဖြည့်ရန်။ က
 
 | Scenario | Expected behavior | Actual result |
 | --- | --- | --- |
-| Empty Title submit | Title error and Title focus | Not tested |
-| Valid Title with invalid Amount | Amount error and Amount focus | Not tested |
-| Both fields invalid | Title fails first | Not tested |
-| Valid Add | Item added, fields cleared, Title focused | Not tested |
+| Empty Title submit | Title error and Title focus | Student reported pass |
+| Valid Title with invalid Amount | Amount error and Amount focus | Student reported pass |
+| Both fields invalid | Title fails first | Student reported pass |
+| Valid Add | Item added, fields cleared, Title focused | Student reported pass |
 | Edit/Update/Cancel/Delete | Existing behavior preserved | Not tested |
 | Search/category/count/total | Existing behavior preserved | Not tested |
 | Reload | Persistence preserved | Not tested |
@@ -156,7 +156,7 @@ Implementation ပြီးမှ actual results ဖြည့်ရန်။ က
 4. When is imperative Ref focus justified instead of a declarative alternative?
 5. Why should `ref.current` not become a hidden input to rendered UI?
 
-**Student answers:** _To be completed during Day 6 review._
+**Student answers:** _In progress during Day 6 review._
 
 ## Common Mistakes
 
@@ -171,17 +171,45 @@ Implementation ပြီးမှ actual results ဖြည့်ရန်။ က
 
 ### Exercises Completed
 
+- Classified `title` and `error` as State, `filteredExpenses` as Derived Value, and the Title input DOM node as Ref.
+- Corrected `numericAmount` from Derived Value to Local Variable because it is needed only within one submit call.
+- Predicted State update → render, Ref mutation → no render, and local variable → function-call-local lifetime.
+- Wrote typed Title and Amount refs and attached them to the corresponding controlled inputs.
+- Added validation focus behavior and successful-Add Title focus; reported the four focused Add/validation scenarios as passing.
+- Correctly classified `<p>{error}</p>` and `<input value={title} />` as declarative, and `titleRef.current?.focus()` as imperative.
+
 ### Concept Explanations
+
+- Correctly identified that the typed Title value such as `Coffee` belongs in State while DOM focus uses the Ref.
+- Correctly explained that calling `titleRef.current?.focus()` does not itself schedule a React render.
+- Correctly identified initial `ref.current` as `null` and optional chaining as a safe way to call `focus()` only when the DOM node exists.
+- Demonstrated the State vs Ref responsibility boundary for controlled inputs: State owns rendered value; Ref provides a handle for imperative DOM actions.
 
 ### Quiz / Review Evidence
 
+- State/Ref/local persistence and render behavior prediction answered correctly after the classification correction.
+- Nullable DOM ref and optional chaining questions answered correctly.
+- Declarative vs imperative classification answered correctly.
+
 ### Manual Tests
+
+- Student reported passing: empty Title → Title focus; invalid Amount → Amount focus; both invalid → Title first; valid Add → clear fields and focus Title.
+- Full regression matrix is still pending.
 
 ### Mistakes / Corrections
 
+- Initially classified `numericAmount` as a Derived Value; corrected to Local Variable after reviewing its `handleSubmit`-only lifetime.
+- Initially wrote `useRef(HTMLInputElement)(null)` for `amountRef`; corrected mental model is generic syntax `useRef<HTMLInputElement>(null)`.
+
 ### Implementation Evidence
 
+- Student pasted `useRef` import, `titleRef`, `amountRef`, and both input `ref` props while keeping controlled `value`/`onChange` behavior.
+- Student then reported adding safe `focus()` calls to Title/Amount validation branches and the successful Add path.
+- Source changes have not yet been validated with the repository validation suite in this session.
+
 ### Mini Challenges
+
+- Explained through exercises that controlled State and DOM Ref can coexist on the same input with different responsibilities.
 
 ## Completion Criteria
 
