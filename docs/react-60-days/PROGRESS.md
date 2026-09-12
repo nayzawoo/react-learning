@@ -1,6 +1,6 @@
 # React + TypeScript 60-Day Progress
 
-> Current Day: 7
+> Current Day: 8
 > Current Project: Expense Manager
 
 ## Current Project
