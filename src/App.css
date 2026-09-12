@@ -99,6 +99,40 @@
   text-transform: uppercase;
 }
 
+label[for="search-expense"] {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#search-expense {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  margin-bottom: 20px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-strong);
+  background: var(--surface);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+#search-expense:hover {
+  border-color: #b9c5d8;
+}
+
+#search-expense:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(49, 91, 216, 0.1);
+}
+
 .category-select,
 .form-field input {
   width: 100%;
