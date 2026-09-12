@@ -28,3 +28,10 @@ This is a React + TypeScript learning repository. `src/` is the single evolving 
 - Preserve working behavior unless the active lesson requires a change.
 - Never invent student answers, tests, mistakes, achievements, or learning evidence.
 - Follow the matching workflow in `PROTOCOLS.md`; Git operations occur only when that protocol explicitly allows them.
+
+## Validation rules
+
+- Do not automatically start dev/preview servers, open browsers, or run browser automation, screenshots, or E2E tests. Run them only when the student explicitly requests browser testing or visual verification.
+- Accept explicit manual-test results from the student as student-reported evidence, record them in the active lesson's `Session Evidence`, and do not repeat the tests or ask for the same evidence again.
+- For lesson completion, run `npm run verify` and `git diff --check` once. Reuse successful results while relevant source/configuration is unchanged; documentation-only edits do not require another build/lint run.
+- Repeat a failed check only after a relevant fix. These rules never waive a genuine failure or permit invented evidence.

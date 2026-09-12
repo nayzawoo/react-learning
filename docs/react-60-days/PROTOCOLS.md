@@ -16,6 +16,16 @@ For Day 7 and later, `PRODUCTION-FIRST.md` is the canonical lesson-quality and t
 - When the current day, status, completed-day count, project, or implemented-feature summary changes materially, synchronize the short status in root `README.md`. Update this docs README only if its own status-bearing content changes.
 - Git commands are allowed only where a protocol below explicitly permits them. Git itself is the source of truth for commit, tag, and push state; do not copy volatile push state into learning docs.
 
+## Validation and Manual Evidence
+
+- Do not automatically start dev or preview servers, open browsers, or run browser automation, screenshots, or end-to-end tests.
+- Run server/browser/visual/E2E validation only when the student explicitly requests browser testing or visual verification.
+- Accept the student's explicit manual-test results as student-reported evidence and record them in the active lesson's `Session Evidence`. Do not repeat those manual tests or ask the student for the same evidence again.
+- For lesson completion, run `npm run verify` and `git diff --check` once.
+- Reuse successful validation results when relevant source and configuration have not changed. Documentation-only edits do not require another build/lint run.
+- Repeat a failed check only after a relevant fix.
+- These rules do not waive genuinely failed checks and never permit invented evidence.
+
 ## Start Current Lesson
 
 Trigger: `start current lesson`
@@ -52,12 +62,14 @@ No explicit command is required. After a meaningful checkpoint, append or merge 
 
 Do not record trivial conversation or reconstruct missing evidence later. Preserve prior evidence. An evidence update alone does not complete the day, update the completed-day checklist, or permit a commit, tag, or push.
 
+Explicit manual-test results supplied by the student are valid student-reported evidence. Label them accordingly, and do not independently repeat those tests or request the same results again.
+
 ## Validate Current Work
 
 Trigger: `validate current work`
 
 1. Read the active lesson requirements and inspect the relevant Git diff/source.
-2. Run `npm run verify`.
+2. Run `npm run verify` once, or reuse its successful result when relevant source/configuration has not changed. Documentation-only edits do not require another build/lint run.
 3. Compare the implementation and recorded evidence with current lesson requirements.
 4. Report results and genuinely missing items.
 5. Do not mark the day complete, commit, tag, or push.
@@ -83,7 +95,7 @@ Triggers: `Day X complete`, `complete Day X`, `finish Day X`
 1. Confirm Day X is the current active day in `PROGRESS.md`.
 2. Read the lesson's `Session Evidence` first, then inspect only relevant completion criteria, source, and Git diff.
 3. Reuse recorded evidence; ask only for genuinely missing evidence that cannot be verified.
-4. Run `npm run verify` and `git diff --check`. Do not complete the day if required checks or evidence fail.
+4. Run `npm run verify` and `git diff --check` once, or reuse successful results when relevant source/configuration has not changed. Repeat a failed check only after a relevant fix. Do not complete the day if required checks or evidence fail.
 5. Update the active lesson's status, learning summary, mistakes, and patterns from actual evidence.
 6. Update `PROGRESS.md`: completed checklist, next Current Day, focus, and supported learning notes.
 7. Synchronize root `README.md` with the new current status. Update `docs/react-60-days/README.md` only if its status information changed.
