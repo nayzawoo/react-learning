@@ -7,11 +7,11 @@
 
 **Expense Manager — Project 1 (Days 1–10)**
 
-`src/` ထဲက application တစ်ခုတည်းကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်နေသည်။ လက်ရှိ implementation မှာ Add, Edit, Update, Delete, Cancel Edit, reusable category filtering, case-insensitive title search, combined filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus ရှိပြီး Day 6 အထိပြီးစီးထားသည်။
+`src/` ထဲက application တစ်ခုတည်းကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်နေသည်။ လက်ရှိ implementation မှာ Add, Edit, Update, Delete, Cancel Edit, typed expense-domain reducer transitions, reusable category filtering, case-insensitive title search, combined filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus ရှိပြီး Day 7 အထိပြီးစီးထားသည်။
 
 ## Current Day
 
-**Day 7 — useReducer**
+**Day 8 — Context API + useContext**
 
 Status: Planned — Not started
 
@@ -23,7 +23,7 @@ Status: Planned — Not started
 - [x] Day 4
 - [x] Day 5
 - [x] Day 6
-- [ ] Day 7
+- [x] Day 7
 - [ ] Day 8
 - [ ] Day 9
 - [ ] Day 10
@@ -86,18 +86,21 @@ Status: Planned — Not started
 - Day 4: Single Source of Truth, `EXPENSE_CATEGORIES`, `as const`, `typeof ARRAY[number]`, `ExpenseCategory`, reusable `CategorySelect`, optional/discriminated union props, Type Narrowing, strict equality, State vs Props vs Derived Value, Component Responsibility, Lifting State Up
 - Day 5: controlled search input, `searchText` State ownership, case-insensitive substring search, `trim()`/`toLowerCase()` normalization, category + search Boolean composition, named predicates, Derived Value design, duplicate State/Effect avoidance, Component Responsibility
 - Day 6: `useRef`, typed nullable DOM refs, `ref.current`, State vs Ref vs local variable, controlled State with DOM refs, validation focus, successful-Add focus, Declarative vs Imperative behavior
+- Day 7: `useReducer`, reducer purity, State/action/dispatch flow, typed discriminated Action unions, immutable transitions, exhaustive `never` checking, lazy initialization, atomic invariants, and `useState` vs `useReducer` boundaries
 
 ## Current Learning Focus
 
-- Reducer purity and current State → action → next State flow
-- `dispatch` and action objects as event language
-- TypeScript discriminated unions for reducer actions
-- Choosing `useState` vs `useReducer` by transition complexity and responsibility
+- Context creation, Provider boundaries, and `useContext`
+- Context vs Props and appropriate shared-data boundaries
+- Typed Context contracts and missing-Provider handling
+- Context value changes and consumer render behavior
 
 ## Known Weak Areas
 
 - `Derived Value` နဲ့ function-scoped `Local Variable` boundary ကို သတိထားရန် (`numericAmount` ကိုအစမှာ Derived Value ဟုခွဲခဲ့ပြီး ပြန်ပြင်ခဲ့သည်)။
 - TypeScript generic syntax for DOM refs ကို `<HTMLInputElement>` ပုံစံနဲ့ရေးရန် (`useRef(HTMLInputElement)(null)` မဟုတ်)။
+- Reducer purity ကို “new value မဖန်တီးရ” ဟုမယူဆဘဲ equivalent inputs → equivalent results အဖြစ်နားလည်ရန်။
+- React/`useReducer` က State ကိုထိန်းသိမ်းပြီး reducer က next State ကိုတွက်ပေးသည့် responsibility boundary ကိုသတိထားရန်။
 
 ## Important Mistakes / Lessons
 
@@ -105,14 +108,17 @@ Status: Planned — Not started
 - DOM ref မှာ element type ကို generic အဖြစ် `useRef<HTMLInputElement>(null)` ရေးရပြီး initial `current` သည် `null` ဖြစ်နိုင်သည်။
 - Controlled input မှာ State က rendered value ကိုပိုင်ပြီး Ref က `focus()` လို DOM action အတွက် handle ပေးသည်။
 - `ref.current?.focus()` သည် imperative action ဖြစ်ပြီး Ref mutation/action ကိုယ်တိုင် React render မ schedule လုပ်ပါ။
+- Reducer ထဲမှာ `Date.now()` ကဲ့သို့ nondeterministic work သို့မဟုတ် storage write ကဲ့သို့ side effect မလုပ်ရ; event handler/Effect boundary မှာထားရသည်။
+- Update နှင့် edit cleanup ကို atomic reducer transition တစ်ခုအဖြစ်ထားခြင်းက caller တိုင်း invariant ကိုလိုက်နာစေသည်။
+- Same State object ကို mutate ပြီးပြန်ပေးလျှင် `Object.is` equality ကြောင့် React က update ကို skip လုပ်နိုင်သည်; immutable next State ပြန်ပေးရသည်။
 
 ## Last Completed Exercise
 
-Day 6 တွင် State/Ref/Derived/Local classification, render-persistence prediction, typed nullable DOM refs, optional chaining, validation and successful-Add focus, controlled State vs DOM Ref responsibility, and Declarative vs Imperative classification တို့ကို လေ့လာပြီး implementation ပြုလုပ်ခဲ့သည်။ Focus-related scenarios လေးခုကို student က pass ဟု report လုပ်ခဲ့ပြီး source regression review, `npm run verify`, and `git diff --check` အောင်မြင်ခဲ့သည်။
+Day 7 တွင် typed `ExpenseState`/`ExpenseAction`, immutable and exhaustive reducer transitions, lazy initialization, and dispatch integration ကို implementation ပြုလုပ်ခဲ့သည်။ Update cleanup နှင့် delete/edit invariants များကို reducer transitions ထဲတွင်သတ်မှတ်ခဲ့ပြီး existing flows အားလုံးကို student က pass ဟု report လုပ်ခဲ့သည်။ `npm run verify` နှင့် `git diff --check` အောင်မြင်ခဲ့သည်။
 
 ## Next Lesson
 
-Day 7 — `useReducer` ကို reducer purity, action design, `dispatch`, and typed discriminated unions ဖြင့်စတင်ရန်။ Current repository အပေါ်မူတည်ပြီး exact exercise scope နှင့် completion criteria ကို refine လုပ်ရန်။
+Day 8 — Context API + `useContext` ကို Provider boundary, typed Context contract, Context vs Props tradeoffs, and consumer render behavior ဖြင့်လေ့လာရန်။
 
 ## Repository State Notes
 
@@ -121,4 +127,5 @@ Day 7 — `useReducer` ကို reducer purity, action design, `dispatch`, and 
 - `src/` သည် historical copies မပြုလုပ်ဘဲ single evolving source အဖြစ်ဆက်ထားရမည်။
 - Day 5 completion validation တွင် `npm run build` နဲ့ `npm run lint` အောင်မြင်သည်။
 - Day 6 completion validation တွင် `npm run verify` နဲ့ `git diff --check` အောင်မြင်သည်။ Typed Title/Amount refs and scoped focus behavior are present in `ExpenseForm` while existing application flows remain unchanged.
-- Last updated: 2026-09-11 (Day 6 completed; Day 7 current).
+- Day 7 completion validation တွင် `npm run verify` နဲ့ `git diff --check` အောင်မြင်သည်။ Related expense/edit State now uses a typed reducer with immutable, exhaustive transitions and lazy persisted initialization; student-reported manual flows all passed.
+- Last updated: 2026-09-12 (Day 7 completed; Day 8 current).

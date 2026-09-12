@@ -1,22 +1,30 @@
-import { useEffect, useState } from 'react';
+import './App.css';
+import { useEffect, useReducer, useState } from 'react';
 import { type Expense, type ExpenseCategory } from './types/expense';
 import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 import CategorySelect from './components/CategorySelect';
-import './App.css';
 import SearchInput from './components/SearchInput';
+import { expenseReducer, type ExpenseState } from './reducers/expenseReducer';
+
+function createInitialExpenseState(storageKey: string) : ExpenseState {
+  const savedExpense = localStorage.getItem(storageKey);
+
+  return {
+    expenses: savedExpense ? JSON.parse(savedExpense) : [],
+    editingExpense: null,
+  }
+}
 
 function App() {
-  const [expenses, setExpenses] = useState<Expense[]>(() => {
-    const savedExpenses = localStorage.getItem('expenses');
-    if (savedExpenses) {
-      return JSON.parse(savedExpenses);
-    }
+  const [expenseState, dispatch] = useReducer(
+    expenseReducer,
+    "expenses",
+    createInitialExpenseState,
+  );
 
-    return [];
-  });
+  const {expenses, editingExpense} = expenseState;
 
-  const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
   const [filteredCategory, setFilteredCategory] = useState<ExpenseCategory | "All">("All");
   const [searchText, setSearchText] = useState("");
 
@@ -35,28 +43,6 @@ function App() {
   });
 
   const total = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0);
-
-  const handleEdit = (expense: Expense) => {
-    console.log("Editing:" + expense.title);
-    setEditingExpense(expense);
-  }
-
-  const handleDelete = (id: number) => {
-    setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== id))
-  }
-
-  const handleUpdate = (updatedExpense: Expense) => {
-    setExpenses((prevExpenses) =>
-      prevExpenses.map((expense) =>
-        expense.id === updatedExpense.id ? updatedExpense : expense
-      )
-    );
-    handleCancelEdit();
-  }
-
-  const handleCancelEdit = () => {
-    setEditingExpense(null);
-  }
 
   const handleAdd = (
     title: string,
@@ -80,10 +66,38 @@ function App() {
       category,
     };
 
-    setExpenses((prevExpenses) => [
-      ...prevExpenses,
-      newExpense,
-    ]);
+    dispatch({
+      type: "expense/added",
+      expense: newExpense,
+    });
+  }
+
+  const handleEdit = (expense: Expense) => {
+    console.log("Editing:" + expense.title);
+    dispatch({
+      type: "expense/editing",
+      expense,
+    });
+  }
+
+  const handleDelete = (id: number) => {
+    dispatch({
+      type: "expense/deleted",
+      id,
+    });
+  }
+
+  const handleUpdate = (updatedExpense: Expense) => {
+    dispatch({
+      type: "expense/updated",
+      expense: updatedExpense,
+    });
+  }
+
+  const handleCancelEdit = () => {
+    dispatch({
+      type: "expense/editing_canceled",
+    });
   }
 
   return (

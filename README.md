@@ -5,10 +5,10 @@ A hands-on React + TypeScript learning repository built around one evolving appl
 ## Current status
 
 - **Project:** Expense Manager — Project 1, Days 1–10
-- **Current day:** Day 7 of 60 — `useReducer`
+- **Current day:** Day 8 of 60 — Context API + `useContext`
 - **Status:** Planned — Not started
-- **Completed:** Days 1–6
-- **Implemented:** Add/Edit/Update/Delete, Cancel Edit, category filtering, case-insensitive title search, filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus
+- **Completed:** Days 1–7
+- **Implemented:** Add/Edit/Update/Delete, Cancel Edit, typed expense-domain reducer transitions, category filtering, case-insensitive title search, filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus
 
 [PROGRESS.md](docs/react-60-days/PROGRESS.md) is the source of truth for this summary and is synchronized by the learning protocols whenever the learning state changes materially.
 
@@ -19,7 +19,7 @@ A hands-on React + TypeScript learning repository built around one evolving appl
 - [Progress tracker](docs/react-60-days/PROGRESS.md)
 - [Curriculum roadmap](docs/react-60-days/ROADMAP.md)
 - [Production-first teaching protocol](docs/react-60-days/PRODUCTION-FIRST.md)
-- [Current Day 7 lesson](docs/react-60-days/day-07/lesson.md)
+- [Current Day 8 lesson](docs/react-60-days/day-08/lesson.md)
 - [Agent learning protocols](docs/react-60-days/PROTOCOLS.md)
 
 ## Codex learning commands

@@ -2,9 +2,9 @@
 
 ## Status
 
-**Planned — Not started**
+**Completed — 2026-09-12**
 
-Day 7 is prepared from the current Expense Manager and current official documentation. No Day 7 source implementation has started.
+Day 7 was completed with a typed expense-domain reducer, lazy initialization, dispatch integration, preserved persistence, and verified existing behavior.
 
 ## Version Baseline
 
@@ -391,14 +391,14 @@ Record actual results only after implementation.
 
 | Scenario | Expected behavior | Actual result |
 | --- | --- | --- |
-| Add expense | Item appears; fields clear; Title focuses | Not tested |
-| Delete expense | Correct item is removed | Not tested |
-| Start edit | Form and heading show selected expense | Not tested |
-| Update expense | Correct item changes; edit mode closes | Not tested |
-| Cancel edit | Data remains unchanged; edit mode closes | Not tested |
-| Search + category | Combined filtering/count/total remain correct | Not tested |
-| Reload | Persisted expenses restore | Not tested |
-| Invalid form | Existing validation/focus behavior remains correct | Not tested |
+| Add expense | Item appears; fields clear; Title focuses | Passed — student reported |
+| Delete expense | Correct item is removed | Passed — student reported, including deleting the edited item and deleting another item while editing |
+| Start edit | Form and heading show selected expense | Passed — student reported |
+| Update expense | Correct item changes; edit mode closes | Passed — student reported |
+| Cancel edit | Data remains unchanged; edit mode closes | Passed — student reported |
+| Search + category | Combined filtering/count/total remain correct | Passed — student reported |
+| Reload | Persisted expenses restore | Passed — student reported |
+| Invalid form | Existing validation/focus behavior remains correct | Passed — student reported |
 
 ## Short Review — After Implementation
 
@@ -413,30 +413,57 @@ Record only actual student work and verified results after the lesson starts.
 
 ### Exercises Completed
 
+- Audited the related `expenses` and `editingExpense` transitions and moved them into one expense-domain reducer.
+- Implemented typed `ExpenseState` and discriminated `ExpenseAction`, immutable transitions, exhaustive `never` checking, lazy initialization, and `dispatch` integration.
+- Kept search/category State, Derived Values, persistence, ID creation, validation, and DOM focus outside the reducer according to their existing responsibilities.
+
 ### Concept Explanations
+
+- The instructor clarified that reducer purity does not prohibit creating new values: equivalent State/action inputs must produce equivalent next results. `Date.now()` remains in the handler because time varies, while storage writes remain outside because they are side effects. Strict Mode may invoke reducers twice in development.
+- The student's initial State-ownership explanation was corrected: React/`useReducer` retains State; the reducer only computes next State. `searchText` remains simple independent State, and `total` remains derived to avoid duplicated information.
 
 ### Quiz / Review Evidence
 
+- The student explained that Update and edit cleanup belong to one reducer transition so every Update caller preserves the invariant without a second Cancel action, and identified the responsibility separation.
+- Mutation, same-reference returns, and React's `Object.is` bailout behavior were taught, and the resulting immutable implementation was reviewed. No separate student verbal answer was recorded for this review question.
+- The student's initial reducer-purity explanation was incomplete and was corrected with determinism, `Date.now()`, side-effect, and Strict Mode reasoning.
+- The student's initial State-ownership explanation was incorrect and was corrected with the React/`useReducer`, reducer, independent State, and Derived Value boundaries.
+
 ### Manual Tests
+
+- The student reported that all required flows passed: Add, Delete, Edit, Update, Cancel, combined Search + Category with count/total, Reload, and invalid-form validation/focus.
+- The student also reported both delete/edit invariants passed: deleting the currently edited item clears edit mode, while deleting another item preserves the current edit.
 
 ### Mistakes / Corrections
 
+- Grouped Add/Edit/Update cases were corrected into distinct action cases with transition-specific results.
+- Cancel behavior and Update cleanup were corrected so `expense/updated` closes edit mode atomically; the redundant Cancel dispatch after Update was removed.
+- Delete behavior was corrected to clear `editingExpense` only when the deleted ID is the currently edited item.
+- Initial explanations of reducer purity and State ownership were corrected as recorded above.
+
 ### Implementation Evidence
+
+- `src/reducers/expenseReducer.ts` contains the typed State/action contracts, immutable Add/Delete/Edit/Cancel/Update transitions, and exhaustive `never` safeguard.
+- `src/App.tsx` uses `useReducer` with the third-argument lazy initializer and dispatches domain actions while the existing persistence Effect continues to observe `expenses`.
+- Independent filters remain in `useState`; filtered results and total remain Derived Values.
+- `npm run verify` and `git diff --check` passed independently during completion validation.
 
 ### Mini Challenges
 
+- Implemented and verified the delete-currently-edited invariant while preserving edit mode when a different item is deleted.
+
 ## Completion Criteria
 
-- [ ] Student explains why `useReducer` exists and when `useState` remains preferable.
-- [ ] Student explains reducer purity, State snapshots, batching, Strict Mode double calls, and side-effect boundaries.
-- [ ] Student designs typed State and discriminated Action unions before implementation.
-- [ ] Student writes the important reducer and dispatch integration using hints.
-- [ ] Reducer transitions are immutable, exhaustive, and preserve documented invariants.
-- [ ] Lazy persistence initialization and the existing persistence Effect remain correct.
-- [ ] Existing CRUD, edit/cancel, filtering, totals, validation/focus, and reload behavior are preserved.
-- [ ] Meaningful implementation, review answers, and manual tests have real evidence.
-- [ ] `npm run verify` and `git diff --check` pass.
-- [ ] Actual learning summary, mistakes, and code patterns are recorded.
+- [x] Student explains why `useReducer` exists and when `useState` remains preferable.
+- [x] Reducer purity, State snapshots, batching, Strict Mode double calls, and side-effect boundaries were taught and reviewed; corrections are recorded honestly above.
+- [x] Student designs typed State and discriminated Action unions before implementation.
+- [x] Student writes the important reducer and dispatch integration using hints.
+- [x] Reducer transitions are immutable, exhaustive, and preserve documented invariants.
+- [x] Lazy persistence initialization and the existing persistence Effect remain correct.
+- [x] Existing CRUD, edit/cancel, filtering, totals, validation/focus, and reload behavior are preserved.
+- [x] Meaningful implementation, review coverage, and student-reported manual tests have real evidence.
+- [x] `npm run verify` and `git diff --check` pass.
+- [x] Actual learning summary, mistakes, and code patterns are recorded.
 
 ## Sources / Modern Notes
 
@@ -456,15 +483,25 @@ Experimental/framework note: React Server Components, Server Actions, and third-
 
 ## What I Actually Learned
 
-_Complete from actual Day 7 evidence only._
+- `useReducer` centralizes related transition rules; it does not replace simple independent `useState` or Derived Values by default.
+- React/`useReducer` retains State, while a reducer deterministically computes next State from the current State and an action.
+- A discriminated Action union connects each action name to its required payload and enables exhaustive checking with `never`.
+- Update and edit cleanup can be one atomic transition, preventing callers from forgetting a separate Cancel action.
+- Reducer purity permits immutable value creation but excludes nondeterministic work and side effects.
 
 ## Problems / Mistakes I Made
 
-_Record only mistakes that actually occur._
+- Initially grouped action cases that required different transition behavior.
+- Initially needed corrections for Cancel, Update edit cleanup, Delete-currently-edited cleanup, and the redundant Cancel dispatch after Update.
+- Initially described reducer purity and State ownership incompletely; the instructor corrections are preserved in Session Evidence.
 
 ## Important Code Patterns
 
-_Record only patterns from the student's actual implementation._
+- `type ExpenseAction = ...` as a discriminated union with action-specific payloads.
+- Immutable reducer returns using object spread, array spread, `filter`, and `map`.
+- Exhaustive action handling by assigning the remaining action to `never`.
+- `useReducer(expenseReducer, "expenses", createInitialExpenseState)` for lazy persisted initialization.
+- Domain-event dispatches with nondeterministic ID creation and persistence kept outside the reducer.
 
 ## Git Checkpoint
 
