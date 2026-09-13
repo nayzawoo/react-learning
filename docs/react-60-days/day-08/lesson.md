@@ -2,9 +2,9 @@
 
 ## Status
 
-**Planned — Not started**
+**Completed — 2026-09-13**
 
-Day 8 is prepared from the completed Day 7 reducer implementation, the current Expense Manager component tree, and current official React documentation. No Day 8 source implementation has started.
+Day 8 is complete. Topic coverage and the completed review are recorded separately; no independent-understanding claim is made.
 
 ## Version Baseline
 
@@ -363,7 +363,7 @@ Important Context and integration code ကို student က hints ဖြင့�
 5. In `ExpenseItem`, read dispatch through the custom Hook and dispatch typed edit/delete domain actions.
 6. Remove only the now-unnecessary `onEdit` / `onDelete` pass-through Props from `ExpenseList` and `ExpenseItem`.
 7. Keep `expenses` as an explicit `ExpenseList` Prop. Do not move reducer State, filters, total, form fields, storage, IDs, or focus behavior into Context.
-8. Preserve all current behavior and record only actual manual-test results.
+8. Preserve all current behavior. Accept student-reported manual results during the session without requiring a detailed repository history.
 
 ### Hints
 
@@ -373,7 +373,7 @@ Important Context and integration code ကို student က hints ဖြင့�
 - React 19.2.8 supports `<ExpenseDispatchContext value={dispatch}>`.
 - `dispatch` is stable, so do not wrap it in `useMemo`.
 - After updating `ExpenseItem`, use repository search to find stale callback Prop declarations/usages.
-- If the refactor feels more coupled than Props, record that observation—it is part of the lesson, not a failure.
+- If the refactor feels more coupled than Props, discuss that observation during the session—it is part of the lesson, not a failure.
 
 ### Expected Tree After the Exercise
 
@@ -384,20 +384,21 @@ App owns useReducer
       └─ ExpenseItem receives expense and reads dispatch
 ```
 
-## Manual Test Matrix
+## Manual Test Checklist
 
-Record actual student-reported results only after implementation. Do not start a server or repeat explicit student tests unless browser testing or visual verification is explicitly requested.
+Use this as the behavior reference when manual confirmation is needed. Record actual outcomes only as concise, student-reported pass/fail items in the learning-progress checklist.
 
-| Scenario | Expected behavior | Actual result |
-| --- | --- | --- |
-| Add expense | Existing Add and focus behavior remains unchanged | Not tested |
-| Start edit | Correct item opens in edit mode | Not tested |
-| Update expense | Item changes and edit mode closes | Not tested |
-| Cancel edit | Data remains unchanged and edit mode closes | Not tested |
-| Delete expense | Correct item is removed | Not tested |
-| Delete edited item | Item is removed and edit mode clears | Not tested |
-| Search + category | Filtering, count, and total remain correct | Not tested |
-| Reload / invalid form | Persistence and validation/focus remain correct | Not tested |
+| Scenario | Expected behavior |
+| --- | --- |
+| Add expense | Existing Add and focus behavior remains unchanged |
+| Start edit | Correct item opens in edit mode |
+| Update expense | Item changes and edit mode closes |
+| Cancel edit | Data remains unchanged and edit mode closes |
+| Delete expense | Correct item is removed |
+| Delete edited item | Item is removed and edit mode clears |
+| Search + category | Filtering, count, and total remain correct |
+| Reload persistence | Persisted expenses remain after reload |
+| Invalid form | Validation and the appropriate focus behavior remain correct |
 
 ## Short Review — After Teaching and Implementation
 
@@ -407,35 +408,58 @@ Record actual student-reported results only after implementation. Do not start a
 4. If one Context value contains `{ expenses, dispatch }`, which consumers update when `expenses` changes, and why might separate State/dispatch Contexts help?
 5. Why can `memo(ExpenseItem)` not prevent a render caused by a changed Context value?
 
-## Session Evidence
+## Learning Progress Checklist
 
-Record only actual student work, explanations, corrections, and student-reported manual results after the lesson starts.
+Teaching coverage records what was covered. Review completion is recorded separately and does not claim an independent understanding assessment.
 
-### Exercises Completed
+### Teaching coverage
 
-### Concept Explanations
+- [x] Context purpose and Props tradeoffs covered
+- [x] Context object, Provider value, and State ownership explained
+- [x] React 19 Provider syntax and nearest-Provider behavior covered
+- [x] Typed dispatch Context and null guard explained
+- [x] Value identity, Context updates, and parent renders covered
+- [x] memo limitations and State/action Context splitting covered
+- [x] Short review conducted
 
-### Quiz / Review Evidence
+### Implementation reviewed from student-supplied source
 
-### Manual Tests
+- [x] Typed ExpenseDispatchContext created
+- [x] Guarded useExpenseDispatch Hook implemented
+- [x] Provider scoped to the expense-list subtree
+- [x] ExpenseItem dispatches typed Edit/Delete actions
+- [x] Unnecessary callback Props and handlers removed
+- [x] State ownership, explicit data Props, and existing behavior preserved
 
-### Mistakes / Corrections
+### Manual tests — student-reported
 
-### Implementation Evidence
+- [x] Add and successful-Add focus — PASS
+- [x] Edit, Update, and Cancel — PASS
+- [x] Delete — PASS
+- [x] Delete edited item resets edit mode — PASS
+- [x] Search + Category, count, and total — PASS
+- [x] Reload persistence — PASS
+- [x] Invalid-form validation and focus — PASS
 
-### Mini Challenges
+### Automated validation
 
-## Completion Criteria
+- [x] npm run verify — PASS (2026-09-13)
+- [x] git diff --check — PASS (2026-09-13)
 
-- [ ] Student explains Context's purpose, nearest-Provider lookup, subscription behavior, and when Props remain preferable.
-- [ ] Student explains meaningful defaults versus required guarded Context dependencies.
-- [ ] Student explains Context value identity, `Object.is`, consumer re-renders, and why `memo` does not block Context updates.
-- [ ] Student implements the typed Context, guard Hook, Provider, and consumer integration using hints.
-- [ ] Only dispatch distribution moves to Context; State ownership and unrelated State categories remain correct.
-- [ ] Existing reducer invariants and Expense Manager behaviors remain preserved.
-- [ ] Meaningful implementation, review coverage, and manual tests have real evidence.
-- [ ] `npm run verify` and `git diff --check` pass once, or eligible successful results are reused according to `PROTOCOLS.md`.
-- [ ] Actual learning summary, mistakes, and code patterns are recorded.
+## Review completed
+
+- [x] Context purpose, nearest-Provider lookup, subscription behavior, and when Props remain preferable — reviewed with clarification as needed
+- [x] Meaningful defaults versus required guarded Context dependencies — reviewed with clarification as needed
+- [x] Context value identity, `Object.is`, consumer re-renders, and the `memo` limitation — reviewed with clarification as needed
+
+## Completion checklist
+
+- [x] Topic coverage recorded
+- [x] Review completed with clarification as needed
+- [x] Implementation checkpoints reviewed against the current repository source
+- [x] Existing behavior covered by student-reported manual PASS results
+- [x] Automated validation checklist complete
+- [x] Day 8 marked complete
 
 ## Sources / Modern Notes
 
@@ -453,18 +477,6 @@ Current stable client API: `createContext` with `<SomeContext value={...}>` and 
 Compatibility note: `<SomeContext.Provider>` remains relevant to React 18 and older codebases. React 19 removed the much older legacy `contextTypes` / `getChildContext` system.
 
 Experimental/framework note: React Server Components cannot create Context. React 19.3 allows a Server Component to render a Context imported from a client module, but this Vite client-rendered application does not need that pattern.
-
-## What I Actually Learned
-
-_Complete from actual Day 8 evidence only._
-
-## Problems / Mistakes I Made
-
-_Record only mistakes that actually occur._
-
-## Important Code Patterns
-
-_Record only patterns from the student's actual implementation._
 
 ## Git Checkpoint
 

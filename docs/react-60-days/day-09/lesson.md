@@ -4,7 +4,7 @@
 
 **Planned — Not started**
 
-_ဒီ day ရောက်ချိန်မှာ current repository, installed versions နဲ့ student understanding ကိုပြန်စစ်ပြီးမှ lesson detail ကိုချဲ့ရန်။_
+_ဒီ day ရောက်ချိန်မှာ current repository နဲ့ installed versions ကိုပြန်စစ်ပြီးမှ lesson detail ကိုချဲ့ရန်။ Day 9 implementation မစရသေးပါ။_
 
 ## Purpose
 
@@ -17,7 +17,7 @@ Day 08 — Context API + useContext မှ mental model, implementation result �
 ## Prerequisites
 
 - Hooks rules, `useState`, `useEffect`, `useRef`, Context
-- `PROGRESS.md` ရှိ previous-day completion evidence
+- `PROGRESS.md` ရှိ previous-day completion checklist
 - Lesson မစမီ relevant source files ကို inspect လုပ်ထားခြင်း
 
 ## Learning Objectives
@@ -57,13 +57,11 @@ Lesson ရောက်ချိန်မတိုင်မီ ဒီ planned imp
 
 Hook name နဲ့ returned API ကိုကြည့်ရုံဖြင့် responsibility သိနိုင်အောင် redesign လုပ်ရန်။
 
-## Quiz / Review Questions
+## Short Review Questions
 
 1. Custom Hook နဲ့ Component အဓိကကွာခြားချက်ကဘာလဲ။
 2. Logic ရှိတိုင်း Hook သီးခြားခွဲရန်မလိုသည့်အကြောင်းကဘာလဲ။
 3. ဒီနေ့ရွေးထားသော design ကို simpler alternative တစ်ခုနဲ့နှိုင်းပြီး tradeoff ကိုရှင်းပြပါ။
-
-**Student answers:** _To be completed during Day 9 review._
 
 ## Common Mistakes
 
@@ -71,27 +69,38 @@ Hook name နဲ့ returned API ကိုကြည့်ရုံဖြင့�
 - Hooks ကို condition/loop ထဲခေါ်ခြင်း
 - Unrelated behavior များကို “utility Hook” တစ်ခုထဲစုခြင်း
 
-## Completion Criteria
+## Learning Progress Checklist
 
-- [ ] Core concepts ကို student က ကိုယ်ပိုင်စကားဖြင့်ရှင်းပြနိုင်သည်။
-- [ ] Planned implementation ကို hint-first workflow နဲ့ student ကရေးပြီး required behavior အောင်မြင်သည်။
-- [ ] Guided exercises, mini challenge နဲ့ quiz/review ပြီးသည်။
-- [ ] Existing working functionality မပျက်ပါ။
-- [ ] `npm run verify` အောင်မြင်သည်။
-- [ ] Actual learning, problems နဲ့ repository notes ကို update လုပ်သည်။
-- [ ] Git checkpoint ပြုလုပ်သည်။
+### Topic covered
 
-## What I Actually Learned
+- [ ] Custom Hook purpose, naming, and Rules of Hooks covered
+- [ ] Stateful logic reuse, API design, and Effect ownership covered
 
-_To be completed after finishing Day 9._
+### Review completed
 
-## Problems / Mistakes I Made
+- [ ] Short review completed with explanations and clarification as needed
 
-_To be completed after attempting Day 9; မဖြစ်ခဲ့သော mistake ကိုမဖန်တီးရန်။_
+### Implementation checkpoints
 
-## Important Code Patterns
+- [ ] Cohesive extraction candidate selected
+- [ ] Planned implementation completed with existing behavior preserved
 
-_To be recorded from the student's actual Day 9 implementation. Source snapshot ကိုဒီ folder ထဲမကူးဘဲ relevant file/commit ကိုသာညွှန်းရန်။_
+### Manual tests — student-reported
+
+- [ ] No result supplied
+
+### Automated validation
+
+- [ ] `npm run verify` — no result supplied
+- [ ] `git diff --check` — no result supplied
+
+## Completion checklist
+
+- [ ] Topic coverage complete
+- [ ] Review completed with clarification as needed
+- [ ] Implementation checkpoints complete
+- [ ] Required manual and automated validation complete
+- [ ] Day 9 marked complete
 
 ## Git Checkpoint
 

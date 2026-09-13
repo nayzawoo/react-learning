@@ -15,8 +15,8 @@ This is a React + TypeScript learning repository. `src/` is the single evolving 
 
 - `PROGRESS.md`: current day and learning state
 - `ROADMAP.md`: curriculum topics
-- Active `lesson.md`: useful teaching material and actual session evidence
-- `docs/react-60-days/PROTOCOLS.md`: command triggers, evidence, validation, completion, and Git workflows
+- Active `lesson.md`: useful teaching material plus concise learning-progress checklists
+- `docs/react-60-days/PROTOCOLS.md`: command triggers, minimal recordkeeping, validation, completion, and Git workflows
 - `docs/react-60-days/PRODUCTION-FIRST.md`: mandatory Day 7+ current-source, version-aware, production teaching rules
 - Git: commit, tag, and push state
 
@@ -26,12 +26,18 @@ This is a React + TypeScript learning repository. `src/` is the single evolving 
 - From Day 7 onward, teach first and quiz later; follow the production-first lesson structure and completion bar in `PRODUCTION-FIRST.md`.
 - Use a hint-first approach; the student should normally write important learning code.
 - Preserve working behavior unless the active lesson requires a change.
-- Never invent student answers, tests, mistakes, achievements, or learning evidence.
+- Record learning progress as concise checklists: completion items, implementation checkpoints, and test pass/fail status.
+- Keep “topic covered,” “review completed,” and any independently demonstrated result distinct.
+- A completed review with explanations and clarification as needed is sufficient for lesson completion unless the lesson has another substantive technical requirement. Do not require repeated independent restatement solely to satisfy a recordkeeping checklist.
+- Label manual results as student-reported and keep automated checks in a separate checklist.
+- Do not store student answers, quotations, conversation transcripts, verbatim answers, or narratives about individual mistakes and corrections.
+- Preserve lesson explanations, examples, and exercises when updating progress records.
+- Never invent test results, achievements, or implementation claims.
 - Follow the matching workflow in `PROTOCOLS.md`; Git operations occur only when that protocol explicitly allows them.
 
 ## Validation rules
 
 - Do not automatically start dev/preview servers, open browsers, or run browser automation, screenshots, or E2E tests. Run them only when the student explicitly requests browser testing or visual verification.
-- Accept explicit manual-test results from the student as student-reported evidence, record them in the active lesson's `Session Evidence`, and do not repeat the tests or ask for the same evidence again.
+- Accept explicit manual-test results from the student and record only concise, student-reported pass/fail checklist status. Do not repeat tests or ask for the same confirmation while the result remains available in the conversation.
 - For lesson completion, run `npm run verify` and `git diff --check` once. Reuse successful results while relevant source/configuration is unchanged; documentation-only edits do not require another build/lint run.
-- Repeat a failed check only after a relevant fix. These rules never waive a genuine failure or permit invented evidence.
+- Repeat a failed check only after a relevant fix. These rules never waive a genuine failure or permit invented results.

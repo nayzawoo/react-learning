@@ -6,6 +6,7 @@ import ExpenseForm from './components/ExpenseForm';
 import CategorySelect from './components/CategorySelect';
 import SearchInput from './components/SearchInput';
 import { expenseReducer, type ExpenseState } from './reducers/expenseReducer';
+import { ExpenseDispatchContext } from './contexts/ExpenseDispatchContext';
 
 function createInitialExpenseState(storageKey: string) : ExpenseState {
   const savedExpense = localStorage.getItem(storageKey);
@@ -72,21 +73,6 @@ function App() {
     });
   }
 
-  const handleEdit = (expense: Expense) => {
-    console.log("Editing:" + expense.title);
-    dispatch({
-      type: "expense/editing",
-      expense,
-    });
-  }
-
-  const handleDelete = (id: number) => {
-    dispatch({
-      type: "expense/deleted",
-      id,
-    });
-  }
-
   const handleUpdate = (updatedExpense: Expense) => {
     dispatch({
       type: "expense/updated",
@@ -126,7 +112,9 @@ function App() {
           <div>
             <SearchInput value={searchText} onChange={setSearchText}/>
           </div>
-          <ExpenseList expenses={filteredExpenses} onDelete={handleDelete} onEdit={handleEdit} />
+          <ExpenseDispatchContext value={dispatch}>
+            <ExpenseList expenses={filteredExpenses} />
+          </ExpenseDispatchContext>
 
           <div className="total-summary" aria-live="polite">
             <span>Filtered total</span>

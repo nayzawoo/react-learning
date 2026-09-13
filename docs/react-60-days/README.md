@@ -1,6 +1,6 @@
 # React + TypeScript 60-Day Learning System
 
-ဒီ directory က single evolving React application ကိုအသုံးပြုပြီး 60-day curriculum, current progress, daily teaching material နဲ့ actual learning evidence ကိုစနစ်တကျထားသည့် knowledge base ဖြစ်သည်။
+ဒီ directory က single evolving React application ကိုအသုံးပြုပြီး 60-day curriculum, current progress, daily teaching material နဲ့ concise learning-progress checklists ကိုစနစ်တကျထားသည့် knowledge base ဖြစ်သည်။
 
 ## Minimal context flow
 
@@ -14,7 +14,7 @@ AGENTS.md
   → relevant src/ files
 ```
 
-`ROADMAP.md` ကို curriculum context လိုမှသာဖတ်ရန်။ Previous lesson ကို dependency/evidence လိုမှသာဖတ်ရန်။ Future lessons သို့ lesson 60 လုံးကိုအလိုအလျောက်မတင်ရန်။
+`ROADMAP.md` ကို curriculum context လိုမှသာဖတ်ရန်။ Previous lesson ကို dependency/context လိုမှသာဖတ်ရန်။ Future lessons သို့ lesson 60 လုံးကိုအလိုအလျောက်မတင်ရန်။
 
 ## Canonical responsibilities
 
@@ -23,9 +23,9 @@ AGENTS.md
 | `AGENTS.md` | Essential rules and context routing |
 | `PROGRESS.md` | Current Day and current learning state |
 | `ROADMAP.md` | Day 1–60 curriculum topics |
-| `PROTOCOLS.md` | Start, continue, evidence, validation, completion, and Git workflows |
+| `PROTOCOLS.md` | Start, continue, minimal records, validation, completion, and Git workflows |
 | `PRODUCTION-FIRST.md` | Day 7+ lesson quality, current-source, dependency, and production teaching rules |
-| `day-XX/lesson.md` | Useful lesson material and actual learning evidence |
+| `day-XX/lesson.md` | Useful lesson material, status, and concise learning-progress checklists |
 | `src/` | Single evolving application |
 | Git | Commit, tag, and push state |
 
@@ -37,7 +37,10 @@ Current status ကို [PROGRESS.md](PROGRESS.md) မှဖတ်ရန်။ 
 - Day 7+ lesson work တွင် `PRODUCTION-FIRST.md` ကိုဖတ်ပြီး teach-first/current-source/dependency-evaluation rules လိုက်နာရန်
 - Future lesson files ကို concise skeleton အဖြစ်ထားရန်
 - Important learning code ကို student က hint-first workflow နဲ့ရေးရန်
-- Meaningful checkpoints ပြီးတိုင်း active lesson ၏ `Session Evidence` ထဲ actual evidence သာမှတ်ရန်
+- Lesson file ထဲတွင် topic coverage, completed review, implementation checkpoints, student-reported manual results နဲ့ automated checks ကို concise checklists ခွဲ၍သိမ်းရန်
+- Independent understanding ကို အမှန်တကယ်သီးခြားစစ်ဆေးထားမှသာမှတ်တမ်းတင်ပြီး completion evidence အတွက်ထပ်မံပြန်ဆိုခိုင်းခြင်းမပြုရန်
+- Student quotation, message transcript, verbatim answer သို့မဟုတ် individual mistake/correction narrative မသိမ်းရန်
+- Lesson explanations, examples နဲ့ exercises ကို progress update လုပ်ရာတွင်ဆက်လက်ထိန်းသိမ်းရန်
 - Code compile ဖြစ်ခြင်းတစ်ခုတည်းဖြင့် day complete မသတ်မှတ်ရန်
 - Earlier application states ကို lesson folders ထဲမကူးဘဲ Git history မှကြည့်ရန်
 

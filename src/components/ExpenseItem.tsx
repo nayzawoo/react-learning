@@ -1,12 +1,13 @@
 import type { Expense } from "../types/expense";
+import { useExpenseDispatch } from "../contexts/ExpenseDispatchContext";
 
 type ExpenseItemProps = {
     expense: Expense;
-    onDelete: (id: number) => void;
-    onEdit: (expense: Expense) => void;
 };
 
-export default function ExpenseItem({ expense, onDelete, onEdit}: ExpenseItemProps) {
+export default function ExpenseItem({ expense }: ExpenseItemProps) {
+    const dispatch = useExpenseDispatch();
+
     return (
         <article className="expense-card">
             <div className="expense-details">
@@ -21,7 +22,12 @@ export default function ExpenseItem({ expense, onDelete, onEdit}: ExpenseItemPro
                     aria-label={`Edit ${expense.title}`}
                     className="button button-secondary"
                     type="button"
-                    onClick={() => onEdit(expense)}
+                    onClick={() =>
+                        dispatch({
+                            type: "expense/editing",
+                            expense,
+                        })
+                    }
                 >
                     Edit
                 </button>
@@ -29,7 +35,12 @@ export default function ExpenseItem({ expense, onDelete, onEdit}: ExpenseItemPro
                     aria-label={`Delete ${expense.title}`}
                     className="button button-danger"
                     type="button"
-                    onClick={() => onDelete(expense.id)}
+                    onClick={() =>
+                        dispatch({
+                            type: "expense/deleted",
+                            id: expense.id,
+                        })
+                    }
                 >
                     Delete
                 </button>

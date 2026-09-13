@@ -5,10 +5,10 @@ A hands-on React + TypeScript learning repository built around one evolving appl
 ## Current status
 
 - **Project:** Expense Manager — Project 1, Days 1–10
-- **Current day:** Day 8 of 60 — Context API + `useContext`
+- **Current day:** Day 9 of 60 — Custom Hooks
 - **Status:** Planned — Not started
-- **Completed:** Days 1–7
-- **Implemented:** Add/Edit/Update/Delete, Cancel Edit, typed expense-domain reducer transitions, category filtering, case-insensitive title search, filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus
+- **Completed:** Days 1–8
+- **Implemented:** Add/Edit/Update/Delete, Cancel Edit, typed expense-domain reducer transitions, bounded typed dispatch Context, category filtering, case-insensitive title search, filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus
 
 [PROGRESS.md](docs/react-60-days/PROGRESS.md) is the source of truth for this summary and is synchronized by the learning protocols whenever the learning state changes materially.
 
@@ -19,7 +19,7 @@ A hands-on React + TypeScript learning repository built around one evolving appl
 - [Progress tracker](docs/react-60-days/PROGRESS.md)
 - [Curriculum roadmap](docs/react-60-days/ROADMAP.md)
 - [Production-first teaching protocol](docs/react-60-days/PRODUCTION-FIRST.md)
-- [Current Day 8 lesson](docs/react-60-days/day-08/lesson.md)
+- [Current Day 9 lesson](docs/react-60-days/day-09/lesson.md)
 - [Agent learning protocols](docs/react-60-days/PROTOCOLS.md)
 
 ## Codex learning commands
@@ -29,7 +29,7 @@ These are natural-language Agent protocol triggers, not shell commands.
 | Command                   | Purpose                                                                 |
 | ------------------------- | ----------------------------------------------------------------------- |
 | `start current lesson`    | Start the current day detected from `PROGRESS.md`                       |
-| `continue current lesson` | Resume from recorded evidence and unfinished work                       |
+| `continue current lesson` | Resume from concise checklists and unfinished work                      |
 | `validate current work`   | Check implementation and validation without completing the day         |
 | `prepare next lesson`     | Prepare the current upcoming lesson from roadmap + repository state     |
 | `Day X complete`          | Validate, update docs/progress/README, commit and create completion tag |
@@ -88,7 +88,7 @@ npm run dev
 │   ├── ROADMAP.md                    # Canonical curriculum
 │   ├── PROTOCOLS.md                  # Agent workflow behavior
 │   ├── PRODUCTION-FIRST.md            # Day 7+ production teaching rules
-│   └── day-XX/lesson.md              # Lesson content and real evidence
+│   └── day-XX/lesson.md              # Lesson content and concise progress checklists
 ├── AGENTS.md                         # Concise context router and essential rules
 └── package.json                      # Scripts and dependencies
 ```

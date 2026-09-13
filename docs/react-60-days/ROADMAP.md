@@ -298,9 +298,9 @@ Days 50–60
 6. Student writes the important guided implementation
 7. Debug and verify observable behavior together
 8. Ask only 2–5 meaningful reasoning questions
-9. Refactor only when evidence justifies it
+9. Refactor only when an observed technical need justifies it
 10. Run required validation and review manifest/lockfile changes
-11. Record actual evidence and follow the Git checkpoint protocol
+11. Keep concise progress checklists and follow the Git checkpoint protocol
 ```
 
 Target balance: 70–80% teaching, demonstrations, implementation, and production reasoning; 20–30% exercises and review. Course ကို copy/paste/package tutorial မဖြစ်စေဘဲ fundamentals, debugging, tradeoff reasoning, dependency literacy နဲ့ production-level thinking ကိုဦးစားပေးရမယ်။

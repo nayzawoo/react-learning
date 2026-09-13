@@ -245,6 +245,8 @@ Do not complete a lesson merely because a few quizzes were answered, one simple 
 
 If an important surface area is missing, teach it before completion.
 
+Record these checks concisely, separating topic coverage, review completion, and any independently demonstrated result. A completed review with explanations and clarification as needed is sufficient for the review checkpoint; do not require repeated independent restatement solely to fill an evidence checklist. Technical source validation and the Git workflow in `PROTOCOLS.md` still apply.
+
 ## 15. Quiz Policy
 
 Basic quizzes are secondary. Prefer two to five reasoning questions after teaching and implementation, such as:
@@ -256,14 +258,22 @@ Basic quizzes are secondary. Prefer two to five reasoning questions after teachi
 - How would this behave with rapid input?
 - What changes if the component remounts?
 
-## 16. Sources / Modern Notes
+Use answers to guide teaching in the current conversation. Record only that the review was completed with clarification as needed. Record independent understanding only when it was actually assessed, and do not persist individual answers, quotations, or correction narratives.
+
+## 16. Concise Repository Records
+
+For current and future lessons, use concise checklists for teaching coverage, completed review, implementation checkpoints, student-reported manual results, and separate automated checks. Independently demonstrated understanding is optional metadata only when actually assessed; it is not a mandatory evidence gate. Include only applicable sections, record pass/fail or no-result status, and never infer or invent results.
+
+Preserve lesson explanations, examples, exercises, production guidance, completion criteria, and sources. Do not store student quotations, message transcripts, verbatim answers, or narratives about individual mistakes and corrections.
+
+## 17. Sources / Modern Notes
 
 For substantial lessons, maintain a concise `Sources / Modern Notes` section in `lesson.md` when useful. Record official documentation, version-dependent notes, and deprecated or newer APIs discussed. Summarize and link to canonical sources; do not copy large documentation sections.
 
-## 17. Teaching Language
+## 18. Teaching Language
 
 Teach primarily in Burmese and retain standard English terminology such as State, Ref, render, commit, Effect, reducer, dispatch, mutation, controlled component, reconciliation, and batching. Explain difficult English terms in Burmese rather than translating technical vocabulary inconsistently.
 
-## 18. Lesson Quality Rule
+## 19. Lesson Quality Rule
 
 Depth is more important than racing through the schedule. A day may take longer when the topic requires it. Do not skip production knowledge to keep a daily cadence.

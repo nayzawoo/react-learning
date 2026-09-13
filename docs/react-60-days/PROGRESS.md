@@ -1,17 +1,17 @@
 # React + TypeScript 60-Day Progress
 
-> Current Day: 8
+> Current Day: 9
 > Current Project: Expense Manager
 
 ## Current Project
 
 **Expense Manager — Project 1 (Days 1–10)**
 
-`src/` ထဲက application တစ်ခုတည်းကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်နေသည်။ လက်ရှိ implementation မှာ Add, Edit, Update, Delete, Cancel Edit, typed expense-domain reducer transitions, reusable category filtering, case-insensitive title search, combined filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus ရှိပြီး Day 7 အထိပြီးစီးထားသည်။
+`src/` ထဲက application တစ်ခုတည်းကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်နေသည်။ လက်ရှိ implementation မှာ Add, Edit, Update, Delete, Cancel Edit, typed expense-domain reducer transitions, bounded typed dispatch Context, reusable category filtering, case-insensitive title search, combined filtered count/total, `localStorage` persistence, typed DOM refs, validation focus, and successful-Add focus ရှိပြီး Day 8 အထိပြီးစီးထားသည်။
 
 ## Current Day
 
-**Day 8 — Context API + useContext**
+**Day 9 — Custom Hooks**
 
 Status: Planned — Not started
 
@@ -24,7 +24,7 @@ Status: Planned — Not started
 - [x] Day 5
 - [x] Day 6
 - [x] Day 7
-- [ ] Day 8
+- [x] Day 8
 - [ ] Day 9
 - [ ] Day 10
 - [ ] Day 11
@@ -87,13 +87,14 @@ Status: Planned — Not started
 - Day 5: controlled search input, `searchText` State ownership, case-insensitive substring search, `trim()`/`toLowerCase()` normalization, category + search Boolean composition, named predicates, Derived Value design, duplicate State/Effect avoidance, Component Responsibility
 - Day 6: `useRef`, typed nullable DOM refs, `ref.current`, State vs Ref vs local variable, controlled State with DOM refs, validation focus, successful-Add focus, Declarative vs Imperative behavior
 - Day 7: `useReducer`, reducer purity, State/action/dispatch flow, typed discriminated Action unions, immutable transitions, exhaustive `never` checking, lazy initialization, atomic invariants, and `useState` vs `useReducer` boundaries
+- Day 8: Context purpose and Props tradeoffs, React 19 Provider syntax, nearest-Provider lookup, typed guarded Context Hooks, value identity and consumer updates, `memo` limitations, State/action Context splitting, and bounded dispatch distribution
 
 ## Current Learning Focus
 
-- Context creation, Provider boundaries, and `useContext`
-- Context vs Props and appropriate shared-data boundaries
-- Typed Context contracts and missing-Provider handling
-- Context value changes and consumer render behavior
+- Custom Hook purpose and `use...` naming convention
+- Stateful logic reuse versus UI reuse
+- Hook inputs, returned API, Rules of Hooks, and Effect ownership
+- Selecting a cohesive Expense Manager extraction without implementing it before Day 9 starts
 
 ## Known Weak Areas
 
@@ -114,18 +115,19 @@ Status: Planned — Not started
 
 ## Last Completed Exercise
 
-Day 7 တွင် typed `ExpenseState`/`ExpenseAction`, immutable and exhaustive reducer transitions, lazy initialization, and dispatch integration ကို implementation ပြုလုပ်ခဲ့သည်။ Update cleanup နှင့် delete/edit invariants များကို reducer transitions ထဲတွင်သတ်မှတ်ခဲ့ပြီး existing flows အားလုံးကို student က pass ဟု report လုပ်ခဲ့သည်။ `npm run verify` နှင့် `git diff --check` အောင်မြင်ခဲ့သည်။
+Day 8 တွင် typed guarded dispatch Context ကို expense-list subtree အတွင်း bounded Provider အဖြစ်ထည့်ပြီး `ExpenseItem` က typed Edit/Delete actions dispatch လုပ်ရန် refactor ပြုလုပ်ခဲ့သည်။ State ownership နှင့် explicit expense data Props ကိုထိန်းထားပြီး callback pass-through ကိုဖယ်ရှားခဲ့သည်။ Student-reported manual checks၊ `npm run verify` နှင့် `git diff --check` အားလုံး PASS ဖြစ်သည်။
 
 ## Next Lesson
 
-Day 8 — Context API + `useContext` ကို Provider boundary, typed Context contract, Context vs Props tradeoffs, and consumer render behavior ဖြင့်လေ့လာရန်။
+Day 9 — Custom Hooks ကို cohesive stateful logic extraction, Hook API design, Rules of Hooks, and Effect responsibility ဖြင့်လေ့လာရန်။
 
 ## Repository State Notes
 
 - Inspected application versions: React `^19.2.8`, TypeScript `~6.0.2`, Vite `^8.2.2`.
 - `src/App.tsx` က `searchText` နဲ့ category filter State ကိုပိုင်ဆိုင်ပြီး normalized combined result ကို Derived Value အဖြစ်တွက်သည်။ Controlled `SearchInput` က `value`/`onChange` Props ကိုသုံးပြီး `ExpenseList`, count နဲ့ total တို့က same filtered result ကိုသုံးသည်။
 - `src/` သည် historical copies မပြုလုပ်ဘဲ single evolving source အဖြစ်ဆက်ထားရမည်။
+- Day 8 completed with topic coverage, review with clarification as needed, source-reviewed implementation checkpoints, student-reported manual PASS results, and successful automated validation. No independent-understanding claim is recorded.
 - Day 5 completion validation တွင် `npm run build` နဲ့ `npm run lint` အောင်မြင်သည်။
 - Day 6 completion validation တွင် `npm run verify` နဲ့ `git diff --check` အောင်မြင်သည်။ Typed Title/Amount refs and scoped focus behavior are present in `ExpenseForm` while existing application flows remain unchanged.
 - Day 7 completion validation တွင် `npm run verify` နဲ့ `git diff --check` အောင်မြင်သည်။ Related expense/edit State now uses a typed reducer with immutable, exhaustive transitions and lazy persisted initialization; student-reported manual flows all passed.
-- Last updated: 2026-09-12 (Day 7 completed; Day 8 current).
+- Last updated: 2026-09-13 (Day 8 completed; Day 9 current).
