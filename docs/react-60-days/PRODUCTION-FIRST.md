@@ -233,9 +233,9 @@ Admin dashboard: useReducer → complex filter or workflow State
 Checkout flow: useReducer → multi-step transactional State
 ```
 
-## 14. Avoid Premature Completion
+## 14. Lesson Depth and Explicit Completion
 
-Do not complete a lesson merely because a few quizzes were answered, one simple example works, or syntax was copied. Before completion, confirm that:
+While a lesson remains active, do not treat a few quiz answers, one simple example, or copied syntax as the whole teaching experience. Aim to cover:
 
 - The API's main purpose and mental model were taught.
 - Important production use cases and caveats were covered.
@@ -243,9 +243,9 @@ Do not complete a lesson merely because a few quizzes were answered, one simple 
 - The student implemented at least one meaningful example.
 - Existing behavior remains preserved.
 
-If an important surface area is missing, teach it before completion.
+If an important surface area is missing, continue teaching while the lesson remains active.
 
-Record these checks concisely, separating topic coverage, review completion, and any independently demonstrated result. A completed review with explanations and clarification as needed is sufficient for the review checkpoint; do not require repeated independent restatement solely to fill an evidence checklist. Technical source validation and the Git workflow in `PROTOCOLS.md` still apply.
+These are teaching-quality guidelines, not completion gates. When the user issues a completion trigger, treat it as final confirmation, record `User-confirmed`, and immediately follow the completion workflow in `PROTOCOLS.md`. Do not delay completion for a quiz, review, independent restatement, manual testing, automated validation, or source audit.
 
 ## 15. Quiz Policy
 
@@ -258,11 +258,13 @@ Basic quizzes are secondary. Prefer two to five reasoning questions after teachi
 - How would this behave with rapid input?
 - What changes if the component remounts?
 
-Use answers to guide teaching in the current conversation. Record only that the review was completed with clarification as needed. Record independent understanding only when it was actually assessed, and do not persist individual answers, quotations, or correction narratives.
+Use answers to guide teaching in the current conversation. Quizzes and review questions are optional teaching tools and never completion gates. Do not ask or repeat them after a completion trigger, and do not persist individual answers, quotations, or correction narratives.
 
 ## 16. Concise Repository Records
 
-For current and future lessons, use concise checklists for teaching coverage, completed review, implementation checkpoints, student-reported manual results, and separate automated checks. Independently demonstrated understanding is optional metadata only when actually assessed; it is not a mandatory evidence gate. Include only applicable sections, record pass/fail or no-result status, and never infer or invent results.
+For current and future lessons, use concise checklists for teaching coverage, completed review, implementation checkpoints, user-confirmed completion, student-reported manual results, and separate automated status when useful. A completion trigger checks lesson-completion items based on the user's confirmation. Independently demonstrated understanding is optional metadata only when actually assessed and is never a completion gate.
+
+Keep completion and validation distinct. Never mark an unrun check as passed; use `Not run — user preference`. Completion must not initiate build, lint, typecheck, tests, `git diff --check`, source audits, implementation reviews, manual-test requests, servers, browser automation, screenshots, or E2E tests.
 
 Preserve lesson explanations, examples, exercises, production guidance, completion criteria, and sources. Do not store student quotations, message transcripts, verbatim answers, or narratives about individual mistakes and corrections.
 

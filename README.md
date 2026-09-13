@@ -32,8 +32,10 @@ These are natural-language Agent protocol triggers, not shell commands.
 | `continue current lesson` | Resume from concise checklists and unfinished work                      |
 | `validate current work`   | Check implementation and validation without completing the day         |
 | `prepare next lesson`     | Prepare the current upcoming lesson from roadmap + repository state     |
-| `Day X complete`          | Validate, update docs/progress/README, commit and create completion tag |
-| `finish Day X and push`   | Complete the day, then push main and its completion tag                 |
+| `complete Day X`          | User-confirm completion, update status, commit, tag, and push           |
+| `Day X complete`          | User-confirm completion, update status, commit, tag, and push           |
+| `finish Day X`            | User-confirm completion, update status, commit, tag, and push           |
+| `complete current lesson` | Complete the current day, commit, tag, and push                         |
 | `push completed day`      | Push an already completed/tagged day                                    |
 
 Detailed behavior and Git permissions live only in [PROTOCOLS.md](docs/react-60-days/PROTOCOLS.md).

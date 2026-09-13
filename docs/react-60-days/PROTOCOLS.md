@@ -13,24 +13,23 @@ For Day 7 and later, `PRODUCTION-FIRST.md` is the canonical lesson-quality and t
 - Do not implement future lessons or invent test results, achievements, or implementation claims.
 - Keep repository learning records concise and checklist-based. Preserve completion checklists, implementation checkpoints, and test pass/fail status.
 - Distinguish topic coverage, review completion, and any independently demonstrated result.
-- A completed review with explanations and clarification as needed is sufficient unless another substantive lesson requirement remains. Do not require repeated independent restatement solely to satisfy a recordkeeping checklist.
+- A completion trigger is the user's final confirmation that the requested lesson is complete. Record it as `User-confirmed` without requiring another quiz, review, restatement, test, or implementation audit.
 - Label manual results as student-reported and list automated checks separately.
 - Do not store student quotations, message transcripts, verbatim answers, or narratives about individual mistakes and corrections.
 - Preserve lesson explanations, examples, and exercises when updating records.
 - Keep `src/` as the single evolving application.
-- Use `npm run verify` for the repository validation suite.
+- Use `npm run verify` for the repository validation suite only when validation is explicitly requested.
 - When the current day, status, completed-day count, project, or implemented-feature summary changes materially, synchronize the short status in root `README.md`. Update this docs README only if its own status-bearing content changes.
-- Git commands are allowed only where a protocol below explicitly permits them. Git itself is the source of truth for commit, tag, and push state; do not copy volatile push state into learning docs.
+- Git commands are allowed only where a protocol below explicitly permits them. A completion trigger explicitly authorizes staging, commit, annotated tag creation, and push. Git itself is the source of truth for commit, tag, and push state; do not copy volatile push state into learning docs.
 
 ## Validation and Manual Results
 
 - Do not automatically start dev or preview servers, open browsers, or run browser automation, screenshots, or end-to-end tests.
 - Run server/browser/visual/E2E validation only when the student explicitly requests browser testing or visual verification.
-- Accept the student's explicit manual-test results and record only concise, student-reported pass/fail checklist status. Do not repeat those tests or ask for the same confirmation while the results remain available in the conversation.
-- For lesson completion, run `npm run verify` and `git diff --check` once.
-- Reuse successful validation results when relevant source and configuration have not changed. Documentation-only edits do not require another build/lint run.
-- Repeat a failed check only after a relevant fix.
-- These rules do not waive genuinely failed checks and never permit invented results.
+- Run `npm run verify`, build, lint, typecheck, tests, `git diff --check`, source-code audits, implementation reviews, or manual-test requests only when the user explicitly requests validation; lesson completion does not trigger them.
+- Accept manual results when volunteered and record only concise, student-reported pass/fail status. Do not request or repeat them for completion.
+- Keep validation separate from completion. Never mark an unrun automated check as passed; record `Not run — user preference` when the lesson record includes validation status.
+- Never invent a result. A known failed check remains failed until a later explicitly requested validation proves otherwise, but it does not override an explicit user-confirmed completion.
 
 ## Start Current Lesson
 
@@ -96,31 +95,28 @@ Triggers: `prepare next lesson`, `prepare for next lesson`
 8. Review the lesson diff and confirm no future functionality was added.
 9. Do not commit, tag, or push unless the student explicitly requests that separate Git action.
 
-## Complete Current Day
+## Complete Lesson — User-confirmed
 
-Triggers: `Day X complete`, `complete Day X`, `finish Day X`
+Triggers:
 
-1. Confirm Day X is the current active day in `PROGRESS.md`.
-2. Read the lesson's status and concise checklists, then inspect only relevant completion criteria, source, and Git diff.
-3. Use verifiable source plus relevant information available in the active conversation. Accept a completed review with explanations and clarification as sufficient for its review checkpoint; do not require a repeated independent restatement solely for repository evidence. Do not require or recreate detailed narratives.
-4. Run `npm run verify` and `git diff --check` once, or reuse successful results when relevant source/configuration has not changed. Repeat a failed check only after a relevant fix. Do not complete the day if required checks fail or the implementation does not meet the lesson's technical completion bar.
-5. Update the active lesson's status and concise checklists without adding quotations, transcripts, verbatim answers, or mistake/correction narratives.
-6. Update `PROGRESS.md`: completed checklist, next Current Day, focus, and supported learning notes.
-7. Synchronize root `README.md` with the new current status. Update `docs/react-60-days/README.md` only if its status information changed.
-8. Review `git status` and the relevant diff; exclude secrets, generated noise, and unrelated changes.
-9. Commit the day's work as `learn: complete React Day XX` without amending an earlier commit.
-10. Verify `day-XX-complete` does not exist, then create the annotated tag with message `React Day XX complete`. Never overwrite or force-update a completion tag.
-11. Report validation, documentation updates, commit hash, tag, next day, and remaining changes.
-12. Do not push unless explicitly requested.
+- `complete Day X`
+- `Day X complete`
+- `finish Day X`
+- `complete current lesson`
 
-## Complete and Push
+The trigger is the user's final confirmation and authorizes the complete checkpoint workflow without another confirmation.
 
-Trigger: `finish Day X and push`
-
-Run **Complete Current Day** first. Only after successful completion:
-
-- If the current branch is `main`, push `main`, then push the newly created `day-XX-complete` tag.
-- Otherwise report the branch and do not guess a push target.
+1. Resolve the requested day from the command or `PROGRESS.md`. Use minimal Git reads to identify the current branch, configured upstream, relevant changed files, and existing completion commit/tag.
+2. If the lesson is already committed or tagged, do not create a duplicate commit or overwrite the tag. Reuse the existing checkpoint and push only pending work as appropriate.
+3. Mark the lesson `Completed — User-confirmed` and check its lesson-completion items based on the explicit confirmation. Preserve any actual test results; label unrun automated validation `Not run — user preference` rather than PASS.
+4. Mark the day complete in `PROGRESS.md`, advance Current Day, and synchronize root `README.md`. Do not implement the next lesson.
+5. Do not run or request tests, build, lint, typecheck, `git diff --check`, source audits, implementation reviews, manual tests, quizzes, review questions, understanding demonstrations, servers, browser automation, screenshots, or E2E tests.
+6. Use only the minimal operational Git inspection needed to exclude secrets, generated files, and unrelated work from staging.
+7. Stage the relevant lesson, application, and documentation changes.
+8. Commit as `learn: complete React Day XX` without amending an existing commit.
+9. If `day-XX-complete` does not exist, create it as an annotated tag with message `React Day XX complete`. Never overwrite or force-update a tag.
+10. Push the current branch to its configured upstream, then push the completion tag to that upstream's remote. Do not force-push. If no upstream is configured or Git fails, report the concrete issue without inventing success.
+11. Report the user-confirmed completion, validation status, commit hash, tag, push result, next day, and any remaining changes.
 
 ## Push Completed Day
 

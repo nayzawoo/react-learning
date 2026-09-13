@@ -39,9 +39,11 @@ Current status ကို [PROGRESS.md](PROGRESS.md) မှဖတ်ရန်။ 
 - Important learning code ကို student က hint-first workflow နဲ့ရေးရန်
 - Lesson file ထဲတွင် topic coverage, completed review, implementation checkpoints, student-reported manual results နဲ့ automated checks ကို concise checklists ခွဲ၍သိမ်းရန်
 - Independent understanding ကို အမှန်တကယ်သီးခြားစစ်ဆေးထားမှသာမှတ်တမ်းတင်ပြီး completion evidence အတွက်ထပ်မံပြန်ဆိုခိုင်းခြင်းမပြုရန်
+- Completion trigger ကို final user confirmation အဖြစ်ယူပြီး validation/review gate မထားဘဲ status update, commit, annotated tag နဲ့ configured upstream push ကိုလုပ်ရန်
+- Unrun automated check ကို PASS မရေးဘဲ `Not run — user preference` ဟုသာမှတ်ရန်
 - Student quotation, message transcript, verbatim answer သို့မဟုတ် individual mistake/correction narrative မသိမ်းရန်
 - Lesson explanations, examples နဲ့ exercises ကို progress update လုပ်ရာတွင်ဆက်လက်ထိန်းသိမ်းရန်
 - Code compile ဖြစ်ခြင်းတစ်ခုတည်းဖြင့် day complete မသတ်မှတ်ရန်
 - Earlier application states ကို lesson folders ထဲမကူးဘဲ Git history မှကြည့်ရန်
 
-Workflow triggers, validation, completion commit/tag နဲ့ push permissions အားလုံးအတွက် [PROTOCOLS.md](PROTOCOLS.md) ကိုလိုက်နာရန်။
+Workflow triggers, optional validation, user-confirmed completion, commit/tag နဲ့ push permissions အားလုံးအတွက် [PROTOCOLS.md](PROTOCOLS.md) ကိုလိုက်နာရန်။

@@ -23,12 +23,12 @@ This is a React + TypeScript learning repository. `src/` is the single evolving 
 ## Teaching rules
 
 - Teach primarily in Burmese while retaining standard English technical terms.
-- From Day 7 onward, teach first and quiz later; follow the production-first lesson structure and completion bar in `PRODUCTION-FIRST.md`.
+- From Day 7 onward, follow the production-first lesson structure in `PRODUCTION-FIRST.md`.
 - Use a hint-first approach; the student should normally write important learning code.
 - Preserve working behavior unless the active lesson requires a change.
 - Record learning progress as concise checklists: completion items, implementation checkpoints, and test pass/fail status.
 - Keep “topic covered,” “review completed,” and any independently demonstrated result distinct.
-- A completed review with explanations and clarification as needed is sufficient for lesson completion unless the lesson has another substantive technical requirement. Do not require repeated independent restatement solely to satisfy a recordkeeping checklist.
+- A completion trigger is the user's final confirmation that the lesson is complete. Record completion as `User-confirmed`; do not require quizzes, repeated explanations, manual tests, source review, or validation first.
 - Label manual results as student-reported and keep automated checks in a separate checklist.
 - Do not store student answers, quotations, conversation transcripts, verbatim answers, or narratives about individual mistakes and corrections.
 - Preserve lesson explanations, examples, and exercises when updating progress records.
@@ -38,6 +38,6 @@ This is a React + TypeScript learning repository. `src/` is the single evolving 
 ## Validation rules
 
 - Do not automatically start dev/preview servers, open browsers, or run browser automation, screenshots, or E2E tests. Run them only when the student explicitly requests browser testing or visual verification.
-- Accept explicit manual-test results from the student and record only concise, student-reported pass/fail checklist status. Do not repeat tests or ask for the same confirmation while the result remains available in the conversation.
-- For lesson completion, run `npm run verify` and `git diff --check` once. Reuse successful results while relevant source/configuration is unchanged; documentation-only edits do not require another build/lint run.
-- Repeat a failed check only after a relevant fix. These rules never waive a genuine failure or permit invented results.
+- Run build, lint, typecheck, tests, `git diff --check`, source audits, or manual-test requests only through an explicit validation request, never as a lesson-completion prerequisite.
+- Keep completion and validation distinct. Never mark an unrun check as passed; record it as `Not run — user preference` when useful.
+- A completion trigger authorizes the required status edits, staging, commit, annotated tag, and push without an additional confirmation.
